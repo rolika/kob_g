@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 	$QuantityLabel.text = str(counter)
 	$DiameterLabel.text = str(diameter)
 	$CubeLabel.text = str(cube)
-	$VolumeLabel.text = str(cube * counter * PRECISION)
+	$VolumeLabel.text = "%.2f" % (cube * counter * PRECISION)
 
 
 func set_cube_data(diameter_: int = 20, cube_: int = 15) -> void:
