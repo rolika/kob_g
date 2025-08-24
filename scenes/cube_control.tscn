@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://yirpmxhwf8cj"]
+[gd_scene load_steps=3 format=3 uid="uid://yirpmxhwf8cj"]
 
 [ext_resource type="Script" uid="uid://b3bbauppbgqwu" path="res://scripts/cube_control.gd" id="1_ode8r"]
+[ext_resource type="Texture2D" uid="uid://7oc0weeunmu" path="res://icon.svg" id="2_ggvlh"]
 
 [node name="CubeControl" type="Control"]
+custom_minimum_size = Vector2(616, 136)
 layout_mode = 3
 anchors_preset = 0
-size_flags_horizontal = 0
+offset_right = 616.0
+offset_bottom = 136.0
 script = ExtResource("1_ode8r")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -16,7 +19,7 @@ offset_bottom = 40.0
 [node name="DecreaseButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = " - "
+icon = ExtResource("2_ggvlh")
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -66,7 +69,7 @@ text = "század m3"
 
 [node name="IncreaseButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-text = " + "
+icon = ExtResource("2_ggvlh")
 
 [connection signal="pressed" from="HBoxContainer/DecreaseButton" to="." method="_on_decrease_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/IncreaseButton" to="." method="_on_increase_button_pressed"]

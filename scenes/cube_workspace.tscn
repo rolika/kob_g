@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8e3b2r17ogg0"]
+
+[ext_resource type="Script" uid="uid://bwyej8yrj8a3m" path="res://scripts/cube_workspace.gd" id="1_bvljy"]
+
+[node name="CubeWorkspace" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -720.0
+offset_bottom = -1280.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bvljy")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(616, 1120)
+layout_mode = 1
+offset_right = 616.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(616, 1120)
+layout_mode = 2
+theme_override_constants/separation = 4
