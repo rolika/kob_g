@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3 uid="uid://yirpmxhwf8cj"]
+
+[ext_resource type="Script" uid="uid://b3bbauppbgqwu" path="res://scripts/cube_control.gd" id="1_ode8r"]
+
+[node name="CubeControl" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+script = ExtResource("1_ode8r")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DecreaseButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " - "
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "számláló:"
+
+[node name="CounterLabel" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "12"
+
+[node name="Label3" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "db, azaz "
+
+[node name="VolumeLabel" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "0,14"
+
+[node name="Label5" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "m3"
+
+[node name="Label6" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "átmérő:"
+
+[node name="DiameterLabel" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "17"
+
+[node name="Label8" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "cm, rönkre:"
+
+[node name="CubicLabel" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "12"
+
+[node name="Label10" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "század m3"
+
+[node name="IncreaseButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = " + "
+
+[connection signal="pressed" from="HBoxContainer/DecreaseButton" to="." method="_on_decrease_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/IncreaseButton" to="." method="_on_increase_button_pressed"]

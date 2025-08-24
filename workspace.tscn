@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbq5nmrd3vqxu"]
+
+[ext_resource type="PackedScene" uid="uid://dp5ri8j7ulivd" path="res://wood_card.tscn" id="1_nf4vs"]
+
+[node name="Workspace" type="Node2D"]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+offset_right = 720.0
+offset_bottom = 1160.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="WoodCard" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard2" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard3" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard4" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard5" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard6" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard7" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard8" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard9" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard10" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard11" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard12" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard13" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard14" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
+
+[node name="WoodCard15" parent="ScrollContainer/VBoxContainer" instance=ExtResource("1_nf4vs")]
