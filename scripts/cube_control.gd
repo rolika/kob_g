@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
     var diameter_label: Label = $HBoxContainer/GridContainer/DiameterLabel
     var cubic_label: Label = $HBoxContainer/GridContainer/CubicLabel
     var volume_label: Label = $HBoxContainer/GridContainer/VolumeLabel
-    if counter> 0:
+    if counter > 0:
         decrease_button.disabled = false
     else:
         decrease_button.disabled = true
