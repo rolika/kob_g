@@ -16,6 +16,9 @@ func _ready() -> void:
     
     for length in get_woodlengths(file_path, "bükk"):
         print(length)
+    
+    for data in get_cubedata(file_path, "tölgy", 3.1):
+        print(data)
 
 
 func get_woodtypes(file_path: String) -> Array:
@@ -52,4 +55,27 @@ func get_woodlengths(file_path: String, woodtype: String) -> Array:
             var length = line.left(index_of_colon + 1)
             result.append(length.to_float())
             
+    return result
+
+
+func get_cubedata(file_path: String, woodtype: String, length: float) -> Array:
+    var file = FileAccess.open(file_path, FileAccess.READ)
+    var result = []  
+    var line: String 
+    
+    if file:
+        # find the wood type
+        while file.get_position() < file.get_length():
+            line = file.get_line()
+            if line.begins_with(woodtype):
+                break
+        # find the length        
+        while file.get_position() < file.get_length():
+            line = file.get_line()
+            if line.begins_with(" " + str(length)):
+                break
+        # read the cube data
+        var cubedata = line.split(":")[1]
+        for number in cubedata.strip_edges().split(" "):
+            result.append(str(number))
     return result
