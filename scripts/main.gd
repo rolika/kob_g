@@ -11,11 +11,14 @@ func _ready() -> void:
     add_child(cube_workspace)
     cube_workspace.set_position(Vector2(0, 0))
     
-    for line in get_wood_types(file_path):
+    for line in get_woodtypes(file_path):
         print(line)
+    
+    for length in get_woodlengths(file_path, "bükk"):
+        print(length)
 
 
-func get_wood_types(file_path: String) -> Array:
+func get_woodtypes(file_path: String) -> Array:
     var file = FileAccess.open(file_path, FileAccess.READ)
     var result = []   
     
@@ -27,4 +30,26 @@ func get_wood_types(file_path: String) -> Array:
                 result.append(line)
         file.close()
                     
+    return result
+
+
+func get_woodlengths(file_path: String, woodtype: String) -> Array:    
+    var file = FileAccess.open(file_path, FileAccess.READ)
+    var result = []   
+    
+    if file:
+        # find the wood type
+        while file.get_position() < file.get_length():
+            var line = file.get_line()
+            if line.begins_with(woodtype):
+                break
+        # read the lengths        
+        while file.get_position() < file.get_length():
+            var line = file.get_line()
+            if not line.begins_with(" "):  # next wood type reached
+                break
+            var index_of_colon = line.find(":")
+            var length = line.left(index_of_colon + 1)
+            result.append(length.to_float())
+            
     return result
