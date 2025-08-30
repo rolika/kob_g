@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Kob"
+run/main_scene="uid://c0kmykqji62jx"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
