@@ -5,7 +5,7 @@ const FILEPATH: String = "res://data/kobozo.txt"
 const ICON: CompressedTexture2D = preload("res://icon.svg")
 
 
-var selected_type: String
+@export var selected_type: String = "tölgy"
 
 
 # Called when the node enters the scene tree for the first time.

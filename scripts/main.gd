@@ -11,33 +11,8 @@ func _ready() -> void:
     add_child(cube_workspace)
     cube_workspace.set_position(Vector2(0, 0))
     
-    for length in get_woodlengths(file_path, "bükk"):
-        print(length)
-    
     for data in get_cubedata(file_path, "tölgy", 3.1):
         print(data)
-
-
-func get_woodlengths(file_path: String, woodtype: String) -> Array:    
-    var file = FileAccess.open(file_path, FileAccess.READ)
-    var result = []   
-    
-    if file:
-        # find the wood type
-        while file.get_position() < file.get_length():
-            var line = file.get_line()
-            if line.begins_with(woodtype):
-                break
-        # read the lengths        
-        while file.get_position() < file.get_length():
-            var line = file.get_line()
-            if not line.begins_with(" "):  # next wood type reached
-                break
-            var index_of_colon = line.find(":")
-            var length = line.left(index_of_colon + 1)
-            result.append(length.to_float())
-            
-    return result
 
 
 func get_cubedata(file_path: String, woodtype: String, length: float) -> Array:
