@@ -9,6 +9,9 @@ const ICON: CompressedTexture2D = preload("res://icon.svg")
 @export var selected_length: float = 2.0
 
 
+signal length_selected(type: String, length: float)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     for woodlength in get_woodlengths(FILEPATH, woodtype):
@@ -20,7 +23,7 @@ func _ready() -> void:
 
 
 func _button_pressed(button: Button) -> void:
-    selected_length = float(button.text)
+    length_selected.emit(woodtype, float(button.text))
 
 
 func get_woodlengths(file_path: String, woodtype_: String) -> Array:    

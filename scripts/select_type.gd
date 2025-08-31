@@ -5,7 +5,7 @@ const FILEPATH: String = "res://data/kobozo.txt"
 const ICON: CompressedTexture2D = preload("res://icon.svg")
 
 
-@export var selected_type: String = "tölgy"
+signal type_selected(type: String)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _button_pressed(button: Button) -> void:
-    selected_type = button.text
+    type_selected.emit(button.text)
 
 
 func get_woodtypes(file_path: String) -> Array:
