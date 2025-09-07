@@ -1,7 +1,6 @@
 extends Control
 
 
-const FILEPATH: String = "res://data/kobozo.txt"
 const ICON: CompressedTexture2D = preload("res://icon.svg")
 
 
@@ -10,7 +9,7 @@ signal type_selected(type: String)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    for woodtype in get_woodtypes(FILEPATH):
+    for woodtype in File_IO.get_woodtypes():
         var button = Button.new()
         button.text = woodtype
         button.icon = ICON
@@ -22,18 +21,3 @@ func _ready() -> void:
 
 func _button_pressed(button: Button) -> void:
     type_selected.emit(button.text)
-
-
-func get_woodtypes(file_path: String) -> Array:
-    var file = FileAccess.open(file_path, FileAccess.READ)
-    var result = []   
-    
-    if file:
-        while file.get_position() < file.get_length():
-            var line = file.get_line()
-            if not line.begins_with(" "):
-                line = line.trim_suffix(":")
-                result.append(line)
-        file.close()
-                    
-    return result
