@@ -6,7 +6,6 @@ const ICON: CompressedTexture2D = preload("res://icon.svg")
 
 
 @export var woodtype: String = "bükk"
-@export var selected_length: float = 2.0
 
 
 signal length_selected(type: String, length: float)
