@@ -1,4 +1,4 @@
-extends Control
+extends VBoxContainer
 
 
 const ICON: CompressedTexture2D = preload("res://icon.svg")
@@ -16,7 +16,7 @@ func _ready() -> void:
         button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
         button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
         button.pressed.connect(_button_pressed.bind(button))
-        $VBoxContainer/ScrollContainer/VBoxContainer.add_child(button)
+        $ScrollContainer/VBoxContainer.add_child(button)
 
 
 func _button_pressed(button: Button) -> void:
