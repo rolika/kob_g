@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3rl55eeiomcp"]
+
+[ext_resource type="Script" uid="uid://m2wkyy6g26s4" path="res://scripts/type_options.gd" id="1_a8xci"]
+
+[node name="TypeOptions" type="Node2D"]
+script = ExtResource("1_a8xci")
+
+[node name="TitleLabel" type="Label" parent="."]
+offset_right = 720.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+text = "KÖBÖZŐ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="."]
+offset_top = 40.0
+offset_right = 720.0
+offset_bottom = 80.0
+size_flags_horizontal = 0
+text = "Válassz fafajtát!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(240, 800)
+offset_left = 240.0
+offset_top = 240.0
+offset_right = 480.0
+offset_bottom = 1040.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(240, 800)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FooterLabel" type="Label" parent="."]
+offset_top = 1240.0
+offset_right = 720.0
+offset_bottom = 1280.0
+size_flags_horizontal = 0
+text = "WEVIK"
+horizontal_alignment = 1
+vertical_alignment = 1
