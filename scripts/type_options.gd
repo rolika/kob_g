@@ -7,7 +7,7 @@ func _ready() -> void:
     for woodtype in File_IO.get_woodtypes():
         var button = Button.new()
         button.text = woodtype
-        button.icon = ICON  # it's not the icon
+        button.icon = ICON
         button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
         button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
         button.custom_minimum_size = Vector2(240, 200)

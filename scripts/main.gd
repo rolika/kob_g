@@ -2,7 +2,7 @@ extends Node2D
 
 
 const SELECT_TYPE = preload("res://scenes/type_options.tscn")
-const SELECT_LENGTH = preload("res://scenes/select_length.tscn")
+const SELECT_LENGTH = preload("res://scenes/length_options.tscn")
 const CUBE_WORKSPACE = preload("res://scenes/cube_workspace.tscn")
 
 var scene: Node

@@ -1,23 +1,19 @@
-extends VBoxContainer
-
+extends Node2D
 
 const ICON: CompressedTexture2D = preload("res://icon.svg")
+signal length_selected(type: String, length: float)
+@export var woodtype: String = "bükk"
 
-
-signal type_selected(type: String)
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    for woodtype in File_IO.get_woodtypes():
+    for woodlength in File_IO.get_woodlengths(woodtype):
         var button = Button.new()
-        button.text = woodtype
+        button.text = "%.2f m" % woodlength
         button.icon = ICON
         button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
         button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        button.custom_minimum_size = Vector2(240, 200)
         button.pressed.connect(_button_pressed.bind(button))
         $ScrollContainer/VBoxContainer.add_child(button)
 
-
 func _button_pressed(button: Button) -> void:
-    type_selected.emit(button.text)
+    length_selected.emit(woodtype, float(button.text))
