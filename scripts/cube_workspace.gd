@@ -1,8 +1,8 @@
-extends Control
+extends Node2D
 
 
 const CUBE_CONTROL = preload("res://scenes/cube_control.tscn")
-const STARTING_DIAMETER: int = 15
+const STARTING_DIAMETER: int = 12
 
 
 @export var woodtype: String = "bükk"

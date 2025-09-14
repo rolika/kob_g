@@ -9,10 +9,10 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 616.0
 offset_bottom = 136.0
+mouse_filter = 2
 script = ExtResource("1_ode8r")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
