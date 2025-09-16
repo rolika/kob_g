@@ -13,6 +13,7 @@ mouse_filter = 2
 script = ExtResource("1_ode8r")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_right = 720.0
 offset_bottom = 140.0
 
