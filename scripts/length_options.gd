@@ -1,11 +1,10 @@
 extends Node2D
 
 const ICON: CompressedTexture2D = preload("res://icon.svg")
-signal length_selected(type: String, length: float)
-@export var woodtype: String = "bükk"
+signal length_selected(length: float)
 
 func _ready() -> void:
-    for woodlength in File_IO.get_woodlengths(woodtype):
+    for woodlength in File_IO.get_woodlengths():
         var button = Button.new()
         button.text = "%.2f m" % woodlength
         button.icon = ICON
@@ -16,4 +15,4 @@ func _ready() -> void:
         $ScrollContainer/VBoxContainer.add_child(button)
 
 func _button_pressed(button: Button) -> void:
-    length_selected.emit(woodtype, float(button.text))
+    length_selected.emit(float(button.text))

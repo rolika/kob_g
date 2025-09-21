@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+CurrentPile="*res://scripts/pile.gd"
 File_IO="*res://scripts/file_io.gd"
 
 [display]
