@@ -20,6 +20,8 @@ func _on_person_line_edit_text_changed(new_text: String) -> void:
 func _process(_delta: float) -> void:
     if CurrentPile.is_valid():
         $SubmitButton.disabled = false
+    else:
+        $SubmitButton.disabled = true
 
 func _on_submit_button_pressed() -> void:
     submit.emit()
