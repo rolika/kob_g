@@ -29,6 +29,7 @@ func _on_length_selected(length: float) -> void:
     remove_prev_scene()
     scene = WORKSPACE_SCENE.instantiate()
     CurrentPile.length = length
+    CurrentPile.init()
     add_child(scene)
     scene.set_position(Vector2(0, 0))
 
