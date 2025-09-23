@@ -68,7 +68,7 @@ text = "12"
 
 [node name="Label10" type="Label" parent="HBoxContainer/GridContainer"]
 layout_mode = 2
-text = "ezred m3"
+text = "század m3"
 
 [node name="IncreaseButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
