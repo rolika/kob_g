@@ -1,81 +1,38 @@
 extends Node2D
 
+const SESSION_SCENE = preload("res://scenes/session.tscn")
+const TYPE_SCENE = preload("res://scenes/type_options.tscn")
+const LENGTH_SCENE = preload("res://scenes/length_options.tscn")
+const WORKSPACE_SCENE = preload("res://scenes/cube_workspace.tscn")
 
-const CUBE_WORKSPACE = preload("res://scenes/cube_workspace.tscn")
-
+var scene: Node
 
 func _ready() -> void:
-    var file_path = "res://data/kobozo.txt"
+    scene = SESSION_SCENE.instantiate()
+    add_child(scene)
+    scene.submit.connect(_on_session_submitted)
     
-    var cube_workspace = CUBE_WORKSPACE.instantiate()
-    add_child(cube_workspace)
-    cube_workspace.set_position(Vector2(0, 0))
-    
-    for line in get_woodtypes(file_path):
-        print(line)
-    
-    for length in get_woodlengths(file_path, "bükk"):
-        print(length)
-    
-    for data in get_cubedata(file_path, "tölgy", 3.1):
-        print(data)
+func _on_session_submitted() -> void:
+    remove_prev_scene()
+    scene = TYPE_SCENE.instantiate()
+    add_child(scene)
+    scene.type_selected.connect(_on_type_selected)
 
+func _on_type_selected(type: String) -> void:
+    remove_prev_scene()
+    scene = LENGTH_SCENE.instantiate()
+    CurrentPile.type = type
+    add_child(scene)
+    scene.length_selected.connect(_on_length_selected)
 
-func get_woodtypes(file_path: String) -> Array:
-    var file = FileAccess.open(file_path, FileAccess.READ)
-    var result = []   
-    
-    if file:
-        while file.get_position() < file.get_length():
-            var line = file.get_line()
-            if not line.begins_with(" "):
-                line = line.trim_suffix(":")
-                result.append(line)
-        file.close()
-                    
-    return result
+func _on_length_selected(length: float) -> void:
+    remove_prev_scene()
+    scene = WORKSPACE_SCENE.instantiate()
+    CurrentPile.length = length
+    CurrentPile.init()
+    add_child(scene)
+    scene.set_position(Vector2(0, 0))
 
-
-func get_woodlengths(file_path: String, woodtype: String) -> Array:    
-    var file = FileAccess.open(file_path, FileAccess.READ)
-    var result = []   
-    
-    if file:
-        # find the wood type
-        while file.get_position() < file.get_length():
-            var line = file.get_line()
-            if line.begins_with(woodtype):
-                break
-        # read the lengths        
-        while file.get_position() < file.get_length():
-            var line = file.get_line()
-            if not line.begins_with(" "):  # next wood type reached
-                break
-            var index_of_colon = line.find(":")
-            var length = line.left(index_of_colon + 1)
-            result.append(length.to_float())
-            
-    return result
-
-
-func get_cubedata(file_path: String, woodtype: String, length: float) -> Array:
-    var file = FileAccess.open(file_path, FileAccess.READ)
-    var result = []  
-    var line: String 
-    
-    if file:
-        # find the wood type
-        while file.get_position() < file.get_length():
-            line = file.get_line()
-            if line.begins_with(woodtype):
-                break
-        # find the length        
-        while file.get_position() < file.get_length():
-            line = file.get_line()
-            if line.begins_with(" " + str(length)):
-                break
-        # read the cube data
-        var cubedata = line.split(":")[1]
-        for number in cubedata.strip_edges().split(" "):
-            result.append(str(number))
-    return result
+func remove_prev_scene() -> void:
+    remove_child(scene)
+    scene.queue_free()

@@ -1,26 +1,16 @@
 extends Control
 
-
-const PRECISION: float = 0.01
-
-
-var counter: int
 var diameter: int  # diamater is represented in centimetres
-var cube: int  # cube data is represented in m3, must be multiplied by the given precision
-
+var cube: int  # the statistical cube data as an integer (precision is hardcoded in pile.gd)
 
 func _ready() -> void:
-    counter = 0
     set_cube_data()
 
-
 func _on_decrease_button_pressed() -> void:
-    counter -= 1
+    CurrentPile.decrement(cube)
 
-
-func _on_increase_button_pressed() -> void:
-    counter += 1
-
+func _on_increase_button_pressed() -> void:    
+    CurrentPile.increment(cube)
 
 func _process(_delta: float) -> void:
     var decrease_button: Button = $HBoxContainer/DecreaseButton
@@ -28,15 +18,14 @@ func _process(_delta: float) -> void:
     var diameter_label: Label = $HBoxContainer/GridContainer/DiameterLabel
     var cubic_label: Label = $HBoxContainer/GridContainer/CubicLabel
     var volume_label: Label = $HBoxContainer/GridContainer/VolumeLabel
-    if counter> 0:
+    if CurrentPile.counter[cube] > 0:
         decrease_button.disabled = false
     else:
         decrease_button.disabled = true
-    counter_label.text = str(counter)
+    counter_label.text = str(CurrentPile.counter[cube])
     diameter_label.text = str(diameter)
-    cubic_label.text = str(cube)
-    volume_label.text = "%.2f" % (cube * counter * PRECISION)
-
+    cubic_label.text = str(int(round(cube / 10.0)))
+    volume_label.text = "%.2f" % CurrentPile.get_volume(cube)
 
 func set_cube_data(diameter_: int = 20, cube_: int = 15) -> void:
     diameter = diameter_
