@@ -9,6 +9,3 @@ func _ready() -> void:
         $ScrollContainer/VBoxContainer.add_child(cube_control)
         cube_control.set_cube_data(CurrentPile.STARTING_DIAMETER + index, cube)
         index += 1
-        
-func _process(_delta: float) -> void:
-    $SubtitleLabel.text = "Farakás: %.3f m3" % CurrentPile.get_total_volume()
