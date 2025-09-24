@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://drc40bs66ebjm"]
+
+[ext_resource type="Script" uid="uid://d0y1lwxa0sxg6" path="res://scripts/pile_card.gd" id="1_2mn5y"]
+
+[node name="PileCard" type="Node2D"]
+script = ExtResource("1_2mn5y")
+
+[node name="CompanyLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Nyirma és Hegyipusztai Ebt."
+
+[node name="CityLabel" type="Label" parent="."]
+offset_top = 32.0
+offset_right = 58.0
+offset_bottom = 55.0
+text = "Herend"
+
+[node name="SiteLabel" type="Label" parent="."]
+offset_left = 320.0
+offset_top = 32.0
+offset_right = 360.0
+offset_bottom = 55.0
+text = "26E"
+
+[node name="TypeLabel" type="Label" parent="."]
+offset_top = 64.0
+offset_right = 40.0
+offset_bottom = 87.0
+text = "tölgy"
+
+[node name="LengthLabel" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 168.0
+offset_bottom = 87.0
+text = "2,10 m"
+
+[node name="VolumeLabel" type="Label" parent="."]
+offset_top = 104.0
+offset_right = 40.0
+offset_bottom = 127.0
+text = "23,64 m3"

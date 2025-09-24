@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8e3b2r17ogg0"]
+[gd_scene load_steps=3 format=3 uid="uid://b8e3b2r17ogg0"]
 
 [ext_resource type="Script" uid="uid://bwyej8yrj8a3m" path="res://scripts/cube_workspace.gd" id="1_bvljy"]
+[ext_resource type="PackedScene" uid="uid://drc40bs66ebjm" path="res://scenes/pile_card.tscn" id="2_bvljy"]
 
 [node name="CubeWorkspace" type="Node2D"]
 script = ExtResource("1_bvljy")
@@ -13,20 +14,14 @@ text = "KÖBÖZŐ"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubtitleLabel" type="Label" parent="."]
-offset_top = 40.0
-offset_right = 720.0
-offset_bottom = 80.0
-size_flags_horizontal = 0
-text = "Farakás: 0.000 m3"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="PileCard" parent="." instance=ExtResource("2_bvljy")]
+position = Vector2(152, 56)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(720, 800)
-offset_top = 120.0
+offset_top = 210.0
 offset_right = 720.0
-offset_bottom = 1220.0
+offset_bottom = 1210.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
