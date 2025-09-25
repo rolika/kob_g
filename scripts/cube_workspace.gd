@@ -1,6 +1,7 @@
 extends Node2D
 
 const CUBE_CONTROL = preload("res://scenes/cube_control.tscn")
+signal done
 
 func _ready() -> void:
     var index = 0
@@ -9,3 +10,7 @@ func _ready() -> void:
         $ScrollContainer/VBoxContainer.add_child(cube_control)
         cube_control.set_cube_data(CurrentPile.STARTING_DIAMETER + index, cube)
         index += 1
+
+
+func _on_done_button_pressed() -> void:
+    done.emit()
