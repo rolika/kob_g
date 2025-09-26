@@ -4,6 +4,7 @@ const SESSION_SCENE = preload("res://scenes/session.tscn")
 const TYPE_SCENE = preload("res://scenes/type_options.tscn")
 const LENGTH_SCENE = preload("res://scenes/length_options.tscn")
 const WORKSPACE_SCENE = preload("res://scenes/cube_workspace.tscn")
+const REPORT_SCENE = preload("res://scenes/report.tscn")
 
 var scene: Node
 
@@ -31,7 +32,13 @@ func _on_length_selected(length: float) -> void:
     CurrentPile.length = length
     CurrentPile.init()
     add_child(scene)
+    scene.done.connect(_on_cube_done)
     scene.set_position(Vector2(0, 0))
+
+func _on_cube_done() -> void:
+    remove_prev_scene()
+    scene = REPORT_SCENE.instantiate()
+    add_child(scene)
 
 func remove_prev_scene() -> void:
     remove_child(scene)
