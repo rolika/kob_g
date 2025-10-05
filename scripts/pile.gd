@@ -10,6 +10,7 @@ var person: String
 var type: String
 var length: float
 var counter: Dictionary[int, int]
+var index: int = 0
 
 func is_valid() -> bool:
     return not (company.is_empty() or city.is_empty() or site.is_empty() or person.is_empty())
@@ -19,6 +20,7 @@ func init() -> void:
     var cube_data = File_IO.get_cubedata()
     for cube in cube_data:
         counter[cube] = 0
+    File_IO.write_session()
 
 func get_volume(cube: int) -> float:
     return cube * counter[cube] * CUBE_DATA_PRECISION
@@ -34,3 +36,18 @@ func increment(cube: int) -> void:
 
 func decrement(cube: int) -> void:
     counter[cube] -= 1
+
+func get_session_data() -> Dictionary:
+    var kobdata: Array[int]
+    for cube in counter:
+        kobdata.append(counter[cube])
+    var session = {
+        "company": company,
+        "city": city,
+        "site": site,
+        "person": person,
+        "type": type,
+        "length": length,
+        "kobdata": kobdata
+    }
+    return session

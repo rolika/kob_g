@@ -8,9 +8,11 @@ func _ready() -> void:
 
 func _on_decrease_button_pressed() -> void:
     CurrentPile.decrement(cube)
+    File_IO.update_session()
 
 func _on_increase_button_pressed() -> void:    
     CurrentPile.increment(cube)
+    File_IO.update_session()
 
 func _process(_delta: float) -> void:
     var decrease_button: Button = $HBoxContainer/DecreaseButton
