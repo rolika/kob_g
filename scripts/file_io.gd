@@ -1,6 +1,18 @@
 extends Node
 
 const DATAFILE: String = "res://data/kobozo.txt"
+const PILEFOLDER: String = "user://kob"
+
+func _init(datafile: String = DATAFILE, pilefolder: String = PILEFOLDER) -> void:
+    if not FileAccess.file_exists(datafile):
+        get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+    if not DirAccess.dir_exists_absolute(pilefolder):
+        DirAccess.make_dir_absolute(pilefolder)
+
+func _notification(what: int) -> void:
+    if what == NOTIFICATION_WM_CLOSE_REQUEST:
+        # TODO: display some model about the missing kobfile        
+        get_tree().quit()
 
 func get_woodtypes(file_path: String = DATAFILE) -> Array[String]:
     var file = FileAccess.open(file_path, FileAccess.READ)
