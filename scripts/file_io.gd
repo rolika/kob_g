@@ -68,7 +68,7 @@ func get_cubedata(file_path: String = DATAFILE) -> Array[int]:
     return result
 
 func _get_session_count(pilefolder: String = PILEFOLDER) -> int:
-    return DirAccess.get_files_at(pilefolder).size() + 1   # the default 0. index is used to check on a new session
+    return get_sessions(pilefolder).size() + 1   # the default 0. index is used to check on a new session
 
 func write_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:
     assert(DirAccess.dir_exists_absolute(pilefolder))
@@ -87,3 +87,6 @@ func update_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFI
         # TODO: display a modal about the failed file access
     file.close()
         
+func get_sessions(pilefolder: String = PILEFOLDER) -> PackedStringArray:    
+    assert(DirAccess.dir_exists_absolute(pilefolder))
+    return DirAccess.get_files_at(pilefolder)
