@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd3v7gxqe21jg"]
+
+[ext_resource type="Script" uid="uid://dtlfdgttv3qsy" path="res://scripts/restore.gd" id="1_xoj2h"]
+
+[node name="Restore" type="Node2D"]
+script = ExtResource("1_xoj2h")
+
+[node name="TitleLabel" type="Label" parent="."]
+offset_right = 720.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+text = "KÖBÖZŐ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(720, 800)
+offset_top = 64.0
+offset_right = 720.0
+offset_bottom = 1136.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(240, 800)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NewSessionButton" type="Button" parent="."]
+offset_left = 72.0
+offset_top = 1152.0
+offset_right = 656.0
+offset_bottom = 1216.0
+text = "Új köbözés indítása"
+
+[node name="FooterLabel" type="Label" parent="."]
+offset_top = 1240.0
+offset_right = 720.0
+offset_bottom = 1280.0
+size_flags_horizontal = 0
+text = "WEVIK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="NewSessionButton" to="." method="_on_new_session_button_pressed"]

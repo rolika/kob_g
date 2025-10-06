@@ -1,5 +1,6 @@
 extends Node2D
 
+const RESTORE_SCENE = preload("res://scenes/restore.tscn")
 const SESSION_SCENE = preload("res://scenes/session.tscn")
 const TYPE_SCENE = preload("res://scenes/type_options.tscn")
 const LENGTH_SCENE = preload("res://scenes/length_options.tscn")
@@ -9,9 +10,15 @@ const REPORT_SCENE = preload("res://scenes/report.tscn")
 var scene: Node
 
 func _ready() -> void:
+    scene = RESTORE_SCENE.instantiate()
+    add_child(scene)
+    scene.start_new_session.connect(_on_new_session_started)
+
+func _on_new_session_started() -> void:
+    remove_prev_scene()
     scene = SESSION_SCENE.instantiate()
     add_child(scene)
-    scene.submit.connect(_on_session_submitted)
+    scene.submit.connect(_on_session_submitted)    
     
 func _on_session_submitted() -> void:
     remove_prev_scene()

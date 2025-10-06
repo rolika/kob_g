@@ -1,6 +1,6 @@
 extends Node
 
-signal submit()
+signal submit
 
 func _ready() -> void:
     $CompanyLineEdit.call_deferred("grab_focus")
