@@ -1,5 +1,7 @@
 extends Node
 
+class_name Pile
+
 const CUBE_DATA_PRECISION: float = 0.001
 const STARTING_DIAMETER: int = 12
 

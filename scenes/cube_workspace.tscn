@@ -15,7 +15,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PileCard" parent="." instance=ExtResource("2_bvljy")]
-position = Vector2(152, 56)
+offset_left = 152.0
+offset_top = 56.0
+offset_right = 152.0
+offset_bottom = 56.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(720, 800)

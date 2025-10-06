@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://d0y1lwxa0sxg6" path="res://scripts/pile_card.gd" id="1_2mn5y"]
 
-[node name="PileCard" type="Node2D"]
+[node name="PileCard" type="Control"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 440.0
+offset_bottom = 128.0
 script = ExtResource("1_2mn5y")
 
 [node name="CompanyLabel" type="Label" parent="."]
