@@ -1,9 +1,17 @@
 extends Node2D
 
+const RESTORE_CONTROL = preload("res://scenes/restore_control.tscn")
+
 signal start_new_session
 
 func _ready() -> void:
-    pass # Replace with function body.
+    var sessions = File_IO.get_sessions()
+    for session in sessions:
+        var pile: Pile = Pile.new()
+        pile.set_session_data(session)
+        var restore_control = RESTORE_CONTROL.instantiate()
+        $ScrollContainer/VBoxContainer.add_child(restore_control)
+        restore_control.populate(pile)        
 
 func _process(_delta: float) -> void:
     pass

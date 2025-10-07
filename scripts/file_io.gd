@@ -87,6 +87,12 @@ func update_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFI
         # TODO: display a modal about the failed file access
     file.close()
         
-func get_sessions(pilefolder: String = PILEFOLDER) -> PackedStringArray:    
+func get_sessions(pilefolder: String = PILEFOLDER) -> Array[Dictionary]:    
     assert(DirAccess.dir_exists_absolute(pilefolder))
-    return DirAccess.get_files_at(pilefolder)
+    var sessions: Array[Dictionary]
+    var file: FileAccess
+    for filename in DirAccess.get_files_at(pilefolder):
+        file = FileAccess.open(pilefolder.path_join(filename), FileAccess.READ)
+        sessions.append(file.get_var())
+        file.close()
+    return sessions

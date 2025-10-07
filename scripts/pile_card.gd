@@ -12,3 +12,6 @@ func _process(_delta: float) -> void:
     $TypeLabel.text = pile.type
     $LengthLabel.text = "%.2f m" % pile.length
     $VolumeLabel.text = "%.2f m3" % pile.get_total_volume()
+
+func set_pile(pile_arg: Pile) -> void:
+    pile = pile_arg

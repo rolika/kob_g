@@ -11,12 +11,14 @@ offset_bottom = 128.0
 script = ExtResource("1_2mn5y")
 
 [node name="CompanyLabel" type="Label" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Nyirma és Hegyipusztai Ebt."
 
 [node name="CityLabel" type="Label" parent="."]
+layout_mode = 0
 offset_top = 32.0
 offset_right = 58.0
 offset_bottom = 55.0
@@ -24,6 +26,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Herend"
 
 [node name="SiteLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 320.0
 offset_top = 32.0
 offset_right = 360.0
@@ -32,6 +35,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "26E"
 
 [node name="TypeLabel" type="Label" parent="."]
+layout_mode = 0
 offset_top = 64.0
 offset_right = 40.0
 offset_bottom = 87.0
@@ -39,6 +43,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "tölgy"
 
 [node name="LengthLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 128.0
 offset_top = 64.0
 offset_right = 168.0
@@ -47,6 +52,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "2,10 m"
 
 [node name="VolumeLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 128.0
 offset_top = 104.0
 offset_right = 198.0
@@ -55,6 +61,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "23,64 m3"
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_top = 104.0
 offset_right = 40.0
 offset_bottom = 127.0

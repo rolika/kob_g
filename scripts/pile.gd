@@ -53,3 +53,18 @@ func get_session_data() -> Dictionary:
         "kobdata": kobdata
     }
     return session
+
+func set_session_data(session: Dictionary) -> void:
+    company = session.company
+    city = session.city
+    site = session.site
+    person = session.person
+    type = session.type
+    length = session.length
+    var cube_data = File_IO.get_cubedata()
+    for cube in cube_data:
+        counter[cube] = 0
+    var i = 0
+    for cube in counter:
+        counter[cube] = session.kobdata[i]
+        i += 1
