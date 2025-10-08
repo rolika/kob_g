@@ -90,9 +90,12 @@ func update_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFI
 func get_sessions(pilefolder: String = PILEFOLDER) -> Array[Dictionary]:    
     assert(DirAccess.dir_exists_absolute(pilefolder))
     var sessions: Array[Dictionary]
-    var file: FileAccess
     for filename in DirAccess.get_files_at(pilefolder):
-        file = FileAccess.open(pilefolder.path_join(filename), FileAccess.READ)
+        var num: String = filename.split("_")[1]  # filename-format: KOBFILE_FMT
+        num = num.split(".")[0]
+        var index: int = int(num)
+        var file = FileAccess.open(pilefolder.path_join(filename), FileAccess.READ)
         sessions.append(file.get_var())
+        sessions[-1]["index"] = index
         file.close()
     return sessions

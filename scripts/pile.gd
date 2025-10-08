@@ -55,6 +55,7 @@ func get_session_data() -> Dictionary:
     return session
 
 func set_session_data(session: Dictionary) -> void:
+    index = session.index
     company = session.company
     city = session.city
     site = session.site
