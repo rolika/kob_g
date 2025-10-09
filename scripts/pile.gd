@@ -62,7 +62,7 @@ func set_session_data(session: Dictionary) -> void:
     person = session.person
     type = session.type
     length = session.length
-    var cube_data = File_IO.get_cubedata()
+    var cube_data = File_IO.get_cubedata(session.type, session.length)
     for cube in cube_data:
         counter[cube] = 0
     var i = 0

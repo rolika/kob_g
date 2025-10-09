@@ -46,7 +46,7 @@ func get_woodlengths(file_path: String = DATAFILE) -> Array[float]:
             result.append(length.to_float())            
     return result
 
-func get_cubedata(file_path: String = DATAFILE) -> Array[int]:
+func get_cubedata(type: String = CurrentPile.type, length: float = CurrentPile.length, file_path: String = DATAFILE) -> Array[int]:
     var file = FileAccess.open(file_path, FileAccess.READ)
     var result: Array[int] = []  
     var line: String     
@@ -54,12 +54,12 @@ func get_cubedata(file_path: String = DATAFILE) -> Array[int]:
         # find the wood type
         while file.get_position() < file.get_length():
             line = file.get_line()
-            if line.begins_with(CurrentPile.type):
+            if line.begins_with(type):
                 break
         # find the length        
         while file.get_position() < file.get_length():
             line = file.get_line()
-            if line.begins_with(" " + str(CurrentPile.length)):
+            if line.begins_with(" " + str(length)):
                 break
         # read the cube data
         var cubedata = line.split(":")[1]
