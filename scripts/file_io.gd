@@ -99,3 +99,7 @@ func get_sessions(pilefolder: String = PILEFOLDER) -> Array[Dictionary]:
         sessions[-1]["index"] = index
         file.close()
     return sessions
+
+func delete_session(index: int, pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:      
+    assert(DirAccess.dir_exists_absolute(pilefolder))
+    DirAccess.remove_absolute(pilefolder.path_join(kobfile_fmt % index))
