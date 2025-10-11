@@ -1,5 +1,6 @@
 extends Node2D
 
+const RESTORE_SCENE = preload("res://scenes/restore.tscn")
 const SESSION_SCENE = preload("res://scenes/session.tscn")
 const TYPE_SCENE = preload("res://scenes/type_options.tscn")
 const LENGTH_SCENE = preload("res://scenes/length_options.tscn")
@@ -9,9 +10,16 @@ const REPORT_SCENE = preload("res://scenes/report.tscn")
 var scene: Node
 
 func _ready() -> void:
+    scene = RESTORE_SCENE.instantiate()
+    add_child(scene)
+    scene.start_new_session.connect(_on_new_session_started)
+    scene.restore_session.connect(_on_continue_session)
+
+func _on_new_session_started() -> void:
+    remove_prev_scene()
     scene = SESSION_SCENE.instantiate()
     add_child(scene)
-    scene.submit.connect(_on_session_submitted)
+    scene.submit.connect(_on_session_submitted)    
     
 func _on_session_submitted() -> void:
     remove_prev_scene()
@@ -39,6 +47,14 @@ func _on_cube_done() -> void:
     remove_prev_scene()
     scene = REPORT_SCENE.instantiate()
     add_child(scene)
+
+func _on_continue_session(session: Dictionary) -> void:
+    remove_prev_scene()
+    scene = WORKSPACE_SCENE.instantiate()
+    CurrentPile.set_session_data(session)
+    add_child(scene)
+    scene.done.connect(_on_cube_done)
+    scene.set_position(Vector2(0, 0))
 
 func remove_prev_scene() -> void:
     remove_child(scene)
