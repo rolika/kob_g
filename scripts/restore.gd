@@ -14,10 +14,7 @@ func _ready() -> void:
         $ScrollContainer/VBoxContainer.add_child(restore_control)
         restore_control.continue_session.connect(_on_continue_session_button_pressed.bind(session))
         restore_control.remove_session.connect(_on_remove_session_button_pressed.bind(session.index))
-        restore_control.populate(pile)       
-
-func _process(_delta: float) -> void:
-    pass
+        restore_control.populate(pile)    
 
 func _on_new_session_button_pressed() -> void:
     start_new_session.emit()
@@ -28,7 +25,16 @@ func _on_continue_session_button_pressed(session: Dictionary) -> void:
 func _on_remove_session_button_pressed(index: int) -> void:
     for child in $ScrollContainer/VBoxContainer.get_children():
         if index == child.get_node("HBoxContainer/PileCard").pile.index:
-            # TODO: confirm in a modal
-            child.call_deferred("free")
-            File_IO.delete_session(index)
+            var dialog = ConfirmationDialog.new()
+            dialog.title = "Biztos vagy benne?"
+            dialog.dialog_text = "Véglegesen törlődik, nem vonható vissza."
+            dialog.cancel_button_text = "Mégse"
+            dialog.confirmed.connect(_remove_confirmed.bind(child))
+            add_child(dialog)
+            dialog.popup_centered()
+            dialog.show()    
             break
+
+func _remove_confirmed(child: Node) -> void:
+    child.call_deferred("free")
+    File_IO.delete_session(child.get_node("HBoxContainer/PileCard").pile.index)
