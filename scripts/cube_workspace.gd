@@ -11,6 +11,5 @@ func _ready() -> void:
         cube_control.set_cube_data(CurrentPile.STARTING_DIAMETER + index, cube)
         index += 1
 
-
 func _on_done_button_pressed() -> void:
     done.emit()
