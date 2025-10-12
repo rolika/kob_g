@@ -12,7 +12,6 @@ func _init(datafile: String = DATAFILE, pilefolder: String = PILEFOLDER) -> void
 
 func _notification(what: int) -> void:
     if what == NOTIFICATION_WM_CLOSE_REQUEST:
-        # TODO: display modal about the missing kobfile        
         get_tree().quit()
 
 func get_woodtypes(file_path: String = DATAFILE) -> Array[String]:
