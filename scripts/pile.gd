@@ -69,3 +69,20 @@ func set_session_data(session: Dictionary) -> void:
     for cube in counter:
         counter[cube] = session.kobdata[i]
         i += 1
+
+func translate_decimal(num: Variant) -> Variant:
+    if is_instance_of(num, TYPE_FLOAT):
+        var text = "%.2f" % num
+        return text.replace(".", ",")
+    elif is_instance_of(num, TYPE_STRING):
+        return float(num.replace(",", "."))
+    return -1
+
+func get_total_volume_fmt() -> String:
+    return translate_decimal(get_total_volume()) + " m3"
+
+func get_volume_fmt(cube: int) -> String:
+    return translate_decimal(get_volume(cube))
+
+func get_length_fmt(length_: float = length) -> String:
+    return translate_decimal(length_) + " m"
