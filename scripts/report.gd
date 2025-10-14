@@ -25,7 +25,7 @@ func _ready() -> void:
         CurrentPile.type, 
         CurrentPile.get_total_volume_fmt()]
     $ReportLabel.text = report_text
-    var today = Time.get_datetime_dict_from_system()
+    var today = Time.get_date_dict_from_system()
     var date_fmt = DATE_FMT % [today.year, today.month, today.day]
     $DateLabel.text = DATE % [CurrentPile.city, date_fmt]
     $PersonLabel.text = CurrentPile.person
