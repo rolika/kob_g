@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
     counter_label.text = str(CurrentPile.counter[cube])
     diameter_label.text = str(diameter)
     cube_label.text = str(int(round(cube / 10.0)))
-    volume_label.text = "%.2f" % CurrentPile.get_volume(cube)
+    volume_label.text = CurrentPile.get_volume_fmt(cube)
 
 func set_cube_data(diameter_: int = 20, cube_: int = 15) -> void:
     diameter = diameter_

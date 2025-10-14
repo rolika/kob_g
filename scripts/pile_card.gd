@@ -10,8 +10,8 @@ func _process(_delta: float) -> void:
     $CityLabel.text = pile.city
     $SiteLabel.text = pile.site
     $TypeLabel.text = pile.type
-    $LengthLabel.text = "%.2f m" % pile.length
-    $VolumeLabel.text = "%.2f m3" % pile.get_total_volume()
+    $LengthLabel.text = pile.get_length_fmt()
+    $VolumeLabel.text = pile.get_total_volume_fmt()
 
 func set_pile(pile_arg: Pile) -> void:
     pile = pile_arg

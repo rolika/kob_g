@@ -1,7 +1,8 @@
 extends ColorRect
 
-const HEADER: String = "%s, %s, rakodóhely: %s\n%.2f m hosszú %s rönkök, összesen: %.2f m3"
-const LINE: String = "átmérő: %d cm; %d db x %.2f m3/db = %.2f m3"
+const HEADER: String = "%s, %s, rakodóhely: %s\n%s hosszú %s rönkök, összesen: %s"
+const LINE: String = "átmérő: %d cm; %d db x %s m3/db = %s m3"
+const DATE_FMT: String = "%s.%s.%s."
 const DATE: String = "%s, %s"
 
 func _ready() -> void:
@@ -12,17 +13,19 @@ func _ready() -> void:
             report_text += LINE % [
                 index + CurrentPile.STARTING_DIAMETER,
                 CurrentPile.counter[cube], 
-                cube * CurrentPile.CUBE_DATA_PRECISION, 
-                CurrentPile.get_volume(cube)]
+                CurrentPile.translate_decimal(cube * CurrentPile.CUBE_DATA_PRECISION), 
+                CurrentPile.get_volume_fmt(cube)]
             report_text += "     " if index % 2 == 0 else "\n"
             index += 1
     $HeaderLabel.text = HEADER % [
         CurrentPile.company,
         CurrentPile.city, 
         CurrentPile.site, 
-        CurrentPile.length, 
+        CurrentPile.get_length_fmt(), 
         CurrentPile.type, 
-        CurrentPile.get_total_volume()]
+        CurrentPile.get_total_volume_fmt()]
     $ReportLabel.text = report_text
-    $DateLabel.text = DATE % [CurrentPile.city, Time.get_date_string_from_system()]
+    var today = Time.get_date_dict_from_system()
+    var date_fmt = DATE_FMT % [today.year, today.month, today.day]
+    $DateLabel.text = DATE % [CurrentPile.city, date_fmt]
     $PersonLabel.text = CurrentPile.person
