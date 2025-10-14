@@ -7,6 +7,8 @@ signal restore_session
 
 func _ready() -> void:
     var sessions = File_IO.get_sessions()
+    if sessions.size() > 1:
+        sessions.sort_custom(func(s1, s2): return s1.timestamp > s2.timestamp)  # newer come first
     for session in sessions:
         var pile: Pile = Pile.new()
         pile.set_session_data(session)

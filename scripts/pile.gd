@@ -13,6 +13,7 @@ var type: String
 var length: float
 var counter: Dictionary[int, int]
 var index: int = 0
+var timestamp: int = int(Time.get_unix_time_from_system())
 
 func is_valid() -> bool:
     return not (company.is_empty() or city.is_empty() or site.is_empty() or person.is_empty())
@@ -35,9 +36,11 @@ func get_total_volume() -> float:
 
 func increment(cube: int) -> void:
     counter[cube] += 1
+    timestamp = int(Time.get_unix_time_from_system())
 
 func decrement(cube: int) -> void:
     counter[cube] -= 1
+    timestamp = int(Time.get_unix_time_from_system())
 
 func get_session_data() -> Dictionary:
     var kobdata: Array[int]
@@ -50,7 +53,8 @@ func get_session_data() -> Dictionary:
         "person": person,
         "type": type,
         "length": length,
-        "kobdata": kobdata
+        "kobdata": kobdata,
+        "timestamp": timestamp
     }
     return session
 
@@ -62,6 +66,7 @@ func set_session_data(session: Dictionary) -> void:
     person = session.person
     type = session.type
     length = session.length
+    timestamp = session.timestamp
     var cube_data = File_IO.get_cubedata(session.type, session.length)
     for cube in cube_data:
         counter[cube] = 0
