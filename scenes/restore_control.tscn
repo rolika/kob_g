@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://kv8cq3w12weh"]
+[gd_scene load_steps=7 format=3 uid="uid://kv8cq3w12weh"]
 
 [ext_resource type="Script" uid="uid://dljw6chhm8tw3" path="res://scripts/restore_control.gd" id="1_2vduq"]
-[ext_resource type="Texture2D" uid="uid://7oc0weeunmu" path="res://icon.svg" id="2_2vduq"]
+[ext_resource type="Texture2D" uid="uid://i4orxncr6gt3" path="res://assets/icons/delete_128dp_DCDFC5_FILL0_wght400_GRAD0_opsz48.svg" id="2_5pfti"]
 [ext_resource type="PackedScene" uid="uid://drc40bs66ebjm" path="res://scenes/pile_card.tscn" id="3_2vduq"]
+[ext_resource type="Texture2D" uid="uid://bf2xphcfjug0b" path="res://assets/icons/label_important_128dp_DCDFC5_FILL0_wght400_GRAD0_opsz48.svg" id="4_qpknd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5pfti"]
+bg_color = Color(0.192157, 0.301961, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpknd"]
+bg_color = Color(0.192157, 0.301961, 0.109804, 1)
 
 [node name="RestoreControl" type="Control"]
 custom_minimum_size = Vector2(720, 140)
@@ -19,15 +26,23 @@ offset_right = 720.0
 offset_bottom = 140.0
 
 [node name="RemoveButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(136, 136)
 layout_mode = 2
-icon = ExtResource("2_2vduq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5pfti")
+icon = ExtResource("2_5pfti")
+icon_alignment = 1
+expand_icon = true
 
 [node name="PileCard" parent="HBoxContainer" instance=ExtResource("3_2vduq")]
 layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(136, 136)
 layout_mode = 2
-icon = ExtResource("2_2vduq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qpknd")
+icon = ExtResource("4_qpknd")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="pressed" from="HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
