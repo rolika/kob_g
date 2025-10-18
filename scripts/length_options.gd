@@ -1,6 +1,6 @@
 extends Node2D
 
-const ICON: CompressedTexture2D = preload("res://assets/icons/length.svg")
+const ICON: CompressedTexture2D = preload("res://assets/icons/length_icon.png")
 signal length_selected(length: float)
 
 func _ready() -> void:
