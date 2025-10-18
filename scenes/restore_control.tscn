@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://kv8cq3w12weh"]
 
 [ext_resource type="Script" uid="uid://dljw6chhm8tw3" path="res://scripts/restore_control.gd" id="1_2vduq"]
-[ext_resource type="Texture2D" uid="uid://i4orxncr6gt3" path="res://assets/icons/delete_128dp_DCDFC5_FILL0_wght400_GRAD0_opsz48.svg" id="2_5pfti"]
+[ext_resource type="Texture2D" uid="uid://i4orxncr6gt3" path="res://assets/icons/trash.svg" id="2_5pfti"]
 [ext_resource type="PackedScene" uid="uid://drc40bs66ebjm" path="res://scenes/pile_card.tscn" id="3_2vduq"]
-[ext_resource type="Texture2D" uid="uid://bf2xphcfjug0b" path="res://assets/icons/label_important_128dp_DCDFC5_FILL0_wght400_GRAD0_opsz48.svg" id="4_qpknd"]
+[ext_resource type="Texture2D" uid="uid://bf2xphcfjug0b" path="res://assets/icons/continue.svg" id="4_qpknd"]
 
 [node name="RestoreControl" type="Control"]
 custom_minimum_size = Vector2(720, 140)

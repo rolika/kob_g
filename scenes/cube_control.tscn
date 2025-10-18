@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://yirpmxhwf8cj"]
 
 [ext_resource type="Script" uid="uid://b3bbauppbgqwu" path="res://scripts/cube_control.gd" id="1_ode8r"]
-[ext_resource type="Texture2D" uid="uid://c5j08ouxrkqjk" path="res://assets/icons/chips_128dp_DCDFC5_FILL0_wght400_GRAD0_opsz48.svg" id="2_7d0h7"]
-[ext_resource type="Texture2D" uid="uid://lvy00ndj07d0" path="res://assets/icons/add_box_128dp_DCDFC5_FILL0_wght400_GRAD0_opsz48.svg" id="3_758r8"]
+[ext_resource type="Texture2D" uid="uid://c5j08ouxrkqjk" path="res://assets/icons/subtract.svg" id="2_7d0h7"]
+[ext_resource type="Texture2D" uid="uid://lvy00ndj07d0" path="res://assets/icons/add.svg" id="3_758r8"]
 
 [node name="CubeControl" type="Control"]
 custom_minimum_size = Vector2(720, 140)
