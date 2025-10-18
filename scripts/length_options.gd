@@ -12,6 +12,7 @@ func _ready() -> void:
         button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
         button.custom_minimum_size = Vector2(240, 200)
         button.expand_icon = true
+        button.mouse_filter = Control.MOUSE_FILTER_PASS
         button.pressed.connect(_button_pressed.bind(button))
         $ScrollContainer/VBoxContainer.add_child(button)
 
