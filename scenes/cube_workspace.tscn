@@ -35,9 +35,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="DoneButton" type="Button" parent="."]
-offset_left = 72.0
+offset_left = 68.0
 offset_top = 1152.0
-offset_right = 656.0
+offset_right = 652.0
 offset_bottom = 1216.0
 text = "Kész!"
 
