@@ -4,6 +4,7 @@ class_name Pile
 
 const CUBE_DATA_PRECISION: float = 0.001
 const STARTING_DIAMETER: int = 12
+const FLOAT_FMT: String = "%.3f"
 
 var company: String
 var city: String
@@ -77,7 +78,7 @@ func set_session_data(session: Dictionary) -> void:
 
 func translate_decimal(num: Variant) -> Variant:
     if is_instance_of(num, TYPE_FLOAT):
-        var text = "%.2f" % num
+        var text = FLOAT_FMT % num
         return text.replace(".", ",")
     elif is_instance_of(num, TYPE_STRING):
         return float(num.replace(",", "."))
