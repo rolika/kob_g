@@ -1,6 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtgddeolgatp0"]
+[gd_scene load_steps=6 format=3 uid="uid://dtgddeolgatp0"]
 
 [ext_resource type="Script" uid="uid://ctvn7giuucfvt" path="res://scripts/report.gd" id="2_smm52"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66ide"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smm52"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5px1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lv02"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
 
 [node name="Report" type="ColorRect"]
 custom_minimum_size = Vector2(720, 1280)
@@ -26,12 +58,72 @@ offset_right = 72.0
 offset_bottom = 63.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 
-[node name="ReportLabel" type="Label" parent="."]
+[node name="ReportGrid" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(656, 0)
 layout_mode = 0
 offset_left = 32.0
 offset_top = 104.0
-offset_right = 696.0
-offset_bottom = 127.0
+offset_right = 72.0
+offset_bottom = 144.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
+
+[node name="DiameterLabel" type="Label" parent="ReportGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_66ide")
+text = "átmérő (cm)"
+horizontal_alignment = 1
+
+[node name="QuantityLabel" type="Label" parent="ReportGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_smm52")
+text = "darab"
+horizontal_alignment = 1
+
+[node name="SingleVolumeLabel" type="Label" parent="ReportGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_q5px1")
+text = "m3/db"
+horizontal_alignment = 1
+
+[node name="VolumeLabel" type="Label" parent="ReportGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_4lv02")
+text = "összesen (m3)"
+horizontal_alignment = 1
+
+[node name="DiameterLabel2" type="Label" parent="ReportGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_66ide")
+text = "átmérő (cm)"
+horizontal_alignment = 1
+
+[node name="QuantityLabel2" type="Label" parent="ReportGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_smm52")
+text = "darab"
+horizontal_alignment = 1
+
+[node name="SingleVolumeLabel2" type="Label" parent="ReportGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_q5px1")
+text = "m3/db"
+horizontal_alignment = 1
+
+[node name="VolumeLabel2" type="Label" parent="ReportGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_4lv02")
+text = "összesen (m3)"
+horizontal_alignment = 1
 
 [node name="DateLabel" type="Label" parent="."]
 layout_mode = 0
@@ -47,7 +139,7 @@ offset_left = 472.0
 offset_top = 1232.0
 offset_right = 512.0
 offset_bottom = 1255.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(408, 1224)
