@@ -50,21 +50,31 @@ text = "KÖBÖZŐ LAP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HeaderLabel" type="Label" parent="."]
+[node name="HeadGrid1" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 0
-offset_left = 32.0
+offset_left = 40.0
 offset_top = 40.0
-offset_right = 72.0
-offset_bottom = 63.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+offset_right = 360.0
+offset_bottom = 80.0
+columns = 2
+
+[node name="HeadGrid2" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 0
+offset_left = 440.0
+offset_top = 40.0
+offset_right = 680.0
+offset_bottom = 80.0
+columns = 2
 
 [node name="ReportGrid" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(656, 0)
 layout_mode = 0
 offset_left = 32.0
-offset_top = 104.0
-offset_right = 72.0
-offset_bottom = 144.0
+offset_top = 120.0
+offset_right = 688.0
+offset_bottom = 160.0
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 8
