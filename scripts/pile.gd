@@ -5,6 +5,7 @@ class_name Pile
 const CUBE_DATA_PRECISION: float = 0.001
 const STARTING_DIAMETER: int = 12
 const FLOAT_FMT: String = "%.3f"
+const LENGTH_FMT: String = "%.2f"
 
 var company: String
 var city: String
@@ -76,9 +77,9 @@ func set_session_data(session: Dictionary) -> void:
         counter[cube] = session.kobdata[i]
         i += 1
 
-func translate_decimal(num: Variant) -> Variant:
+func translate_decimal(num: Variant, fmt: String = FLOAT_FMT) -> Variant:
     if is_instance_of(num, TYPE_FLOAT):
-        var text = FLOAT_FMT % num
+        var text = fmt % num
         return text.replace(".", ",")
     elif is_instance_of(num, TYPE_STRING):
         return float(num.replace(",", "."))
@@ -91,4 +92,4 @@ func get_volume_fmt(cube: int) -> String:
     return translate_decimal(get_volume(cube))
 
 func get_length_fmt(length_: float = length) -> String:
-    return translate_decimal(length_) + " m"
+    return translate_decimal(length_, LENGTH_FMT) + " m"
