@@ -10,60 +10,43 @@ offset_right = 440.0
 offset_bottom = 128.0
 script = ExtResource("1_2mn5y")
 
-[node name="CompanyLabel" type="Label" parent="."]
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(440, 90)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 35.0
+offset_right = 440.0
+offset_bottom = 125.0
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="CompanyLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Nyirma és Hegyipusztai Ebt."
 
-[node name="CityLabel" type="Label" parent="."]
-layout_mode = 0
-offset_top = 32.0
-offset_right = 58.0
-offset_bottom = 55.0
+[node name="CityLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Herend"
 
-[node name="SiteLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 320.0
-offset_top = 32.0
-offset_right = 360.0
-offset_bottom = 55.0
+[node name="SiteLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "26E"
 
-[node name="TypeLabel" type="Label" parent="."]
-layout_mode = 0
-offset_top = 64.0
-offset_right = 40.0
-offset_bottom = 87.0
+[node name="TypeLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "tölgy"
 
-[node name="LengthLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 128.0
-offset_top = 64.0
-offset_right = 168.0
-offset_bottom = 87.0
+[node name="LengthLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "2,10 m"
 
-[node name="VolumeLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 128.0
-offset_top = 104.0
-offset_right = 198.0
-offset_bottom = 127.0
+[node name="VolumeLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "23,64 m3"
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_top = 104.0
-offset_right = 40.0
-offset_bottom = 127.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Összesen:"
