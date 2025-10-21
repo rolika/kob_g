@@ -8,12 +8,6 @@ func _ready() -> void:
     cellstyle.bg_color = Color(0, 0, 0, 0.0)
     cellstyle.border_color = Color(0, 0, 0)
     cellstyle.set_border_width_all(1)
-    $PileHead/VBoxContainer/GridContainer/CompanyLabel.text = CurrentPile.company
-    $PileHead/VBoxContainer/GridContainer/CityLabel.text = CurrentPile.city
-    $PileHead/VBoxContainer/GridContainer2/SiteLabel.text = CurrentPile.site
-    $PileHead/VBoxContainer/GridContainer2/TypeLabel.text = CurrentPile.type
-    $PileHead/VBoxContainer/GridContainer2/LengthLabel.text = CurrentPile.get_length_fmt()
-    $PileHead/VBoxContainer/GridContainer/TotalVolumeLabel.text = CurrentPile.get_total_volume_fmt()
     var index = 0
     for cube in CurrentPile.counter:
         var diameter: Label = Label.new()

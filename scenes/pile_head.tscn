@@ -1,10 +1,13 @@
-[gd_scene format=3 uid="uid://cf1065x07egsy"]
+[gd_scene load_steps=2 format=3 uid="uid://cf1065x07egsy"]
+
+[ext_resource type="Script" uid="uid://d3sc887yva2q7" path="res://scripts/pile_head.gd" id="1_mr2jj"]
 
 [node name="PileHead" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_mr2jj")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(656, 0)
