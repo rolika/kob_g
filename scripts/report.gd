@@ -8,44 +8,12 @@ func _ready() -> void:
     cellstyle.bg_color = Color(0, 0, 0, 0.0)
     cellstyle.border_color = Color(0, 0, 0)
     cellstyle.set_border_width_all(1)
-    var company_label: Label = Label.new()
-    var company_name: Label = Label.new()
-    company_name.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    var city_label: Label = Label.new()
-    var city_name: Label = Label.new()
-    var site_label: Label = Label.new()
-    var site_name: Label = Label.new()
-    var type_label: Label = Label.new()
-    var type_name: Label = Label.new()
-    type_name.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    var length_label: Label = Label.new()
-    var length_value: Label = Label.new()
-    var volume_label: Label = Label.new()
-    volume_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-    var volume_value: Label = Label.new()
-    volume_value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-    company_label.text = "erdőbirtokosság:"
-    company_name.text = CurrentPile.company
-    city_label.text = "helység:"
-    city_name.text = CurrentPile.city
-    site_label.text = "rakodóhely:"
-    site_name.text = CurrentPile.site
-    type_label.text = "fafajta:"
-    type_name.text = CurrentPile.type
-    length_label.text = "rönkhossz:"
-    length_value.text = CurrentPile.get_length_fmt()
-    volume_label.text = "összesen:"
-    volume_value.text = CurrentPile.get_total_volume_fmt()
-    $HeadGrid1.add_child(company_label)
-    $HeadGrid1.add_child(company_name)
-    $HeadGrid1.add_child(city_label)
-    $HeadGrid1.add_child(city_name)
-    $HeadGrid2.add_child(site_label)
-    $HeadGrid2.add_child(site_name)
-    $HeadGrid2.add_child(type_label)
-    $HeadGrid2.add_child(type_name)
-    $HeadGrid2.add_child(length_label)
-    $HeadGrid2.add_child(length_value)
+    $PileHead/VBoxContainer/GridContainer/CompanyLabel.text = CurrentPile.company
+    $PileHead/VBoxContainer/GridContainer/CityLabel.text = CurrentPile.city
+    $PileHead/VBoxContainer/GridContainer2/SiteLabel.text = CurrentPile.site
+    $PileHead/VBoxContainer/GridContainer2/TypeLabel.text = CurrentPile.type
+    $PileHead/VBoxContainer/GridContainer2/LengthLabel.text = CurrentPile.get_length_fmt()
+    $PileHead/VBoxContainer/GridContainer/TotalVolumeLabel.text = CurrentPile.get_total_volume_fmt()
     var index = 0
     for cube in CurrentPile.counter:
         var diameter: Label = Label.new()
@@ -74,8 +42,14 @@ func _ready() -> void:
         $ReportGrid.add_child(singlevolume)
         $ReportGrid.add_child(volume)
         index += 1
+    var volume_label: Label = Label.new()
+    volume_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+    var volume_value: Label = Label.new()
+    volume_value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
     var spacer1: Label = Label.new()
     var spacer2: Label = Label.new()
+    volume_label.text = "összesen:"
+    volume_value.text = CurrentPile.get_total_volume_fmt()
     spacer1.text = ""
     spacer2.text = ""
     $ReportGrid.add_child(volume_label)

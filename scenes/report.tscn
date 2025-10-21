@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtgddeolgatp0"]
+[gd_scene load_steps=7 format=3 uid="uid://dtgddeolgatp0"]
 
+[ext_resource type="PackedScene" uid="uid://cf1065x07egsy" path="res://scenes/pile_head.tscn" id="2_q5px1"]
 [ext_resource type="Script" uid="uid://ctvn7giuucfvt" path="res://scripts/report.gd" id="2_smm52"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66ide"]
@@ -50,31 +51,17 @@ text = "KÖBÖZŐ LAP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HeadGrid1" type="GridContainer" parent="."]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 0
-offset_left = 40.0
+[node name="PileHead" parent="." instance=ExtResource("2_q5px1")]
 offset_top = 40.0
-offset_right = 360.0
 offset_bottom = 80.0
-columns = 2
-
-[node name="HeadGrid2" type="GridContainer" parent="."]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 0
-offset_left = 440.0
-offset_top = 40.0
-offset_right = 680.0
-offset_bottom = 80.0
-columns = 2
 
 [node name="ReportGrid" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(656, 0)
 layout_mode = 0
 offset_left = 32.0
-offset_top = 120.0
+offset_top = 140.0
 offset_right = 688.0
-offset_bottom = 160.0
+offset_bottom = 180.0
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 8

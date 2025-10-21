@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cf1065x07egsy"]
+
+[node name="PileHead" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(656, 0)
+layout_mode = 0
+offset_left = 24.0
+offset_right = 698.0
+offset_bottom = 91.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 6
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "erdőbirtokosság:"
+
+[node name="CompanyLabel" type="Label" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+text = "Nyirma és Hegyipusztai Erdőbirtokossági Társulat"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "helység:"
+
+[node name="CityLabel" type="Label" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+text = "Kiskunfélegyháza-Kerekerdő"
+autowrap_mode = 3
+
+[node name="Label5" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "köbözött érték:"
+
+[node name="TotalVolumeLabel" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "1234,567 m3"
+
+[node name="GridContainer2" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 6
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "rakodóhely:"
+
+[node name="SiteLabel" type="Label" parent="VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "KE2334"
+
+[node name="Label3" type="Label" parent="VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "fafajta:"
+
+[node name="TypeLabel" type="Label" parent="VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "amerikai mammutfenyő"
+
+[node name="Label5" type="Label" parent="VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "rönkhossz:"
+
+[node name="LengthLabel" type="Label" parent="VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "10,00 m"
