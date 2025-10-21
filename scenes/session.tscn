@@ -104,6 +104,13 @@ text = "WEVIK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label5" type="Label" parent="."]
+offset_left = 592.0
+offset_top = 688.0
+offset_right = 644.0
+offset_bottom = 708.0
+text = "(Enter)"
+
 [connection signal="text_changed" from="CompanyLineEdit" to="." method="_on_company_line_edit_text_changed"]
 [connection signal="text_changed" from="CityLineEdit" to="." method="_on_city_line_edit_text_changed"]
 [connection signal="text_changed" from="SiteLineEdit" to="." method="_on_site_line_edit_text_changed"]
