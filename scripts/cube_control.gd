@@ -16,10 +16,10 @@ func _on_increase_button_pressed() -> void:
 
 func _process(_delta: float) -> void:
     var decrease_button: Button = $HBoxContainer/DecreaseButton
-    var counter_label: Label = $HBoxContainer/GridContainer/CounterLabel
-    var diameter_label: Label = $HBoxContainer/GridContainer/DiameterLabel
-    var cube_label: Label = $HBoxContainer/GridContainer/CubeLabel
-    var volume_label: Label = $HBoxContainer/GridContainer/VolumeLabel
+    var counter_label: Label = $HBoxContainer/CounterGrid/CounterLabel
+    var diameter_label: Label = $HBoxContainer/DiameterVBox/DiameterLabel
+    var cube_label: Label = $HBoxContainer/CubeVBox/CubeLabel
+    var volume_label: Label = $HBoxContainer/CounterGrid/VolumeLabel
     if CurrentPile.counter[cube] > 0:
         decrease_button.disabled = false
     else:
