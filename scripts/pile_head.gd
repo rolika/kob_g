@@ -7,3 +7,6 @@ func _ready() -> void:
     $VBoxContainer/GridContainer2/TypeLabel.text = CurrentPile.type
     $VBoxContainer/GridContainer2/LengthLabel.text = CurrentPile.get_length_fmt()
     $VBoxContainer/GridContainer/TotalVolumeLabel.text = CurrentPile.get_total_volume_fmt()
+
+func _process(_delta: float) -> void:    
+    $VBoxContainer/GridContainer/TotalVolumeLabel.text = CurrentPile.get_total_volume_fmt()

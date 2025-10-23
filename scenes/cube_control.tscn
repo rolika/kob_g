@@ -109,5 +109,12 @@ icon = ExtResource("3_758r8")
 icon_alignment = 1
 expand_icon = true
 
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 140.0
+offset_right = 576.0
+offset_bottom = 144.0
+
 [connection signal="pressed" from="HBoxContainer/DecreaseButton" to="." method="_on_decrease_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/IncreaseButton" to="." method="_on_increase_button_pressed"]

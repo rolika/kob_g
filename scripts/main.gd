@@ -13,7 +13,7 @@ func _ready() -> void:
     scene = RESTORE_SCENE.instantiate()
     add_child(scene)
     scene.start_new_session.connect(_on_new_session_started)
-    scene.restore_session.connect(_on_continue_session)
+    scene.restore_session.connect(_on_show_session)
 
 func _on_new_session_started() -> void:
     remove_prev_scene()
@@ -48,14 +48,20 @@ func _on_cube_done() -> void:
     scene = REPORT_SCENE.instantiate()
     add_child(scene)
 
-func _on_continue_session(session: Dictionary) -> void:
+func _on_show_session(session: Dictionary) -> void:
     remove_prev_scene()
-    scene = WORKSPACE_SCENE.instantiate()
+    scene = SESSION_SCENE.instantiate()
     CurrentPile.set_session_data(session)
     add_child(scene)
-    scene.done.connect(_on_cube_done)
-    scene.set_position(Vector2(0, 0))
+    scene.set_session()
+    scene.submit.connect(_on_continue_session)
 
 func remove_prev_scene() -> void:
     remove_child(scene)
     scene.queue_free()
+
+func _on_continue_session() -> void:    
+    remove_prev_scene()
+    scene = WORKSPACE_SCENE.instantiate()
+    add_child(scene)
+    scene.done.connect(_on_cube_done)

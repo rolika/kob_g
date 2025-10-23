@@ -25,3 +25,14 @@ func _process(_delta: float) -> void:
 
 func _on_submit_button_pressed() -> void:
     submit.emit()
+
+func set_session() -> void:
+    $CompanyLineEdit.clear()
+    $CompanyLineEdit.insert_text_at_caret(CurrentPile.company)
+    $CityLineEdit.clear()
+    $CityLineEdit.insert_text_at_caret(CurrentPile.city)
+    $SiteLineEdit.clear()
+    $SiteLineEdit.insert_text_at_caret(CurrentPile.site)
+    $PersonLineEdit.clear()
+    $PersonLineEdit.insert_text_at_caret(CurrentPile.person)
+    $SubmitButton.grab_focus()
