@@ -112,7 +112,11 @@ offset_bottom = 628.0
 text = "(Enter, ha nem látszik a Tovább gomb!)"
 
 [connection signal="text_changed" from="CompanyLineEdit" to="." method="_on_company_line_edit_text_changed"]
+[connection signal="text_submitted" from="CompanyLineEdit" to="." method="_on_company_line_edit_text_submitted"]
 [connection signal="text_changed" from="CityLineEdit" to="." method="_on_city_line_edit_text_changed"]
+[connection signal="text_submitted" from="CityLineEdit" to="." method="_on_city_line_edit_text_submitted"]
 [connection signal="text_changed" from="SiteLineEdit" to="." method="_on_site_line_edit_text_changed"]
+[connection signal="text_submitted" from="SiteLineEdit" to="." method="_on_site_line_edit_text_submitted"]
 [connection signal="text_changed" from="PersonLineEdit" to="." method="_on_person_line_edit_text_changed"]
+[connection signal="text_submitted" from="PersonLineEdit" to="." method="_on_person_line_edit_text_submitted"]
 [connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]
