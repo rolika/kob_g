@@ -35,4 +35,4 @@ func set_session() -> void:
     $SiteLineEdit.insert_text_at_caret(CurrentPile.site)
     $PersonLineEdit.clear()
     $PersonLineEdit.insert_text_at_caret(CurrentPile.person)
-    $SubmitButton.grab_focus()
+    $SubmitButton.call_deferred("grab_focus")
