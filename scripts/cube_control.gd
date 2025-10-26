@@ -8,12 +8,14 @@ func _ready() -> void:
 
 func _on_decrease_button_pressed() -> void:
     CurrentPile.decrement(cube)
-    Input.vibrate_handheld(250)
+    $SubtractAudio.play()
+    Input.vibrate_handheld(200)
     File_IO.update_session()
 
 func _on_increase_button_pressed() -> void:    
     CurrentPile.increment(cube)
-    Input.vibrate_handheld(250)
+    $AddAudio.play()
+    Input.vibrate_handheld(200)
     File_IO.update_session()
 
 func _process(_delta: float) -> void:
