@@ -92,7 +92,6 @@ offset_left = 64.0
 offset_top = 704.0
 offset_right = 648.0
 offset_bottom = 768.0
-disabled = true
 text = "Tovább"
 
 [node name="FooterLabel" type="Label" parent="."]

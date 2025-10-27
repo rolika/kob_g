@@ -33,13 +33,11 @@ func _on_person_line_edit_text_submitted(new_text: String) -> void:
     CurrentPile.person = new_text
     $SubmitButton.call_deferred("grab_focus")
 
-func _process(_delta: float) -> void:
-    if CurrentPile.is_valid():
-        $SubmitButton.disabled = false
-    else:
-        $SubmitButton.disabled = true
-
 func _on_submit_button_pressed() -> void:
+    CurrentPile.company = $CompanyLineEdit.text
+    CurrentPile.city = $CityLineEdit.text
+    CurrentPile.site = $SiteLineEdit.text
+    CurrentPile.person = $PersonLineEdit.text
     submit.emit()
 
 func set_session() -> void:
