@@ -1,6 +1,7 @@
 extends Node2D
 
-const RESTORE_CONTROL = preload("res://scenes/restore_control.tscn")
+const RESTORE_CONTROL: PackedScene = preload("res://scenes/restore_control.tscn")
+const CONFIRM_DIALOG: PackedScene = preload("res://scenes/confirm_dialog.tscn")
 
 signal start_new_session
 signal restore_session
@@ -27,10 +28,7 @@ func _on_continue_session_button_pressed(session: Dictionary) -> void:
 func _on_remove_session_button_pressed(index: int) -> void:
     for child in $ScrollContainer/VBoxContainer.get_children():
         if index == child.get_node("HBoxContainer/PileCard").pile.index:
-            var dialog = ConfirmationDialog.new()
-            dialog.title = "Biztos vagy benne?"
-            dialog.dialog_text = "Véglegesen törlődik, nem vonható vissza."
-            dialog.cancel_button_text = "Mégse"
+            var dialog = CONFIRM_DIALOG.instantiate()
             dialog.confirmed.connect(_remove_confirmed.bind(child))
             add_child(dialog)
             dialog.popup_centered()
