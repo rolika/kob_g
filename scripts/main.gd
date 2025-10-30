@@ -7,9 +7,11 @@ const LENGTH_SCENE = preload("res://scenes/length_options.tscn")
 const WORKSPACE_SCENE = preload("res://scenes/cube_workspace.tscn")
 const REPORT_SCENE = preload("res://scenes/report.tscn")
 
-var scene: Node
+var scene: Node = null
 
 func _ready() -> void:
+    if scene != null:
+        remove_prev_scene()
     scene = RESTORE_SCENE.instantiate()
     add_child(scene)
     scene.start_new_session.connect(_on_new_session_started)
@@ -47,6 +49,7 @@ func _on_cube_done() -> void:
     remove_prev_scene()
     scene = REPORT_SCENE.instantiate()
     add_child(scene)
+    scene.back.connect(_ready)
 
 func _on_show_session(session: Dictionary) -> void:
     remove_prev_scene()

@@ -1,5 +1,7 @@
 extends ColorRect
 
+signal back
+
 const DATE_FMT: String = "%s.%s.%s."
 const DATE: String = "%s, %s"
 
@@ -53,5 +55,7 @@ func _ready() -> void:
     var today = Time.get_date_dict_from_system()
     var date_fmt = DATE_FMT % [today.year, today.month, today.day]
     $DateLabel.text = DATE % [CurrentPile.city, date_fmt]
-    $PersonLabel.text = CurrentPile.person
-    $PersonLabel.add_theme_color_override("font_color", Color.BLACK)
+    $PersonButton.text = CurrentPile.person
+
+func _on_person_button_pressed() -> void:
+    back.emit()
