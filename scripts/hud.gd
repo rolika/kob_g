@@ -1,4 +1,4 @@
-extends Node2D
+extends MarginContainer
 
 signal backward
 signal forward
