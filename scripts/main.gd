@@ -8,19 +8,21 @@ const WORKSPACE_SCENE = preload("res://scenes/cube_workspace.tscn")
 const REPORT_SCENE = preload("res://scenes/report.tscn")
 
 var scene: Node = null
+@onready var hud: MarginContainer = $Hud
 
 func _ready() -> void:
     if scene != null:
         remove_prev_scene()
     scene = RESTORE_SCENE.instantiate()
-    add_child(scene)
-    scene.start_new_session.connect(_on_new_session_started)
+    hud.add(scene)
+    hud.title_state()
+    hud.forward.connect(_on_new_session_started)
     scene.restore_session.connect(_on_show_session)
 
 func _on_new_session_started() -> void:
-    remove_prev_scene()
-    scene = SESSION_SCENE.instantiate()
-    add_child(scene)
+    scene = SESSION_SCENE.instantiate()    
+    hud.add(scene)
+    hud.non_title_state()
     scene.submit.connect(_on_session_submitted)    
     
 func _on_session_submitted() -> void:

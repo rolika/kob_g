@@ -3,7 +3,6 @@ extends Node2D
 const RESTORE_CONTROL: PackedScene = preload("res://scenes/restore_control.tscn")
 const CONFIRM_DIALOG: PackedScene = preload("res://scenes/confirm_dialog.tscn")
 
-signal start_new_session
 signal restore_session
 
 func _ready() -> void:
@@ -18,9 +17,6 @@ func _ready() -> void:
         restore_control.continue_session.connect(_on_continue_session_button_pressed.bind(session))
         restore_control.remove_session.connect(_on_remove_session_button_pressed.bind(session.index))
         restore_control.populate(pile)    
-
-func _on_new_session_button_pressed() -> void:
-    start_new_session.emit()
 
 func _on_continue_session_button_pressed(session: Dictionary) -> void:
     restore_session.emit(session)
