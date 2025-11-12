@@ -19,6 +19,8 @@ layout_mode = 0
 offset_left = 8.0
 offset_right = 712.0
 offset_bottom = 140.0
+theme_override_constants/separation = 8
+alignment = 1
 
 [node name="RemoveButton" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(128, 128)
@@ -29,6 +31,7 @@ expand_icon = true
 
 [node name="PileCard" parent="HBoxContainer" instance=ExtResource("3_2vduq")]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="ContinueButton" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(128, 128)
