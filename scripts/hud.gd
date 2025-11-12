@@ -6,6 +6,11 @@ signal home
 
 var screen: Node2D = null
 
+@onready var header_backward_button: Button = $VBoxContainer/HeaderContainer/BackwardButton
+@onready var header_forward_button: Button = $VBoxContainer/HeaderContainer/ForwardButton
+@onready var footer_backward_button: Button = $VBoxContainer/FooterContainer/BackwardButton
+@onready var footer_forward_button: Button = $VBoxContainer/FooterContainer/ForwardButton
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     pass # Replace with function body.
@@ -28,15 +33,3 @@ func add(content: Node2D) -> void:
         screen.call_deferred("free")
     screen = content
     $VBoxContainer/ContentContainer.add_child(screen)
-
-func title_state() -> void:
-    $VBoxContainer/HeaderContainer/BackwardButton.disabled = true
-    $VBoxContainer/FooterContainer/BackwardButton.disabled = true
-    $VBoxContainer/FooterContainer/HomeButton.disabled = true
-
-func non_title_state() -> void:
-    $VBoxContainer/HeaderContainer/BackwardButton.disabled = false
-    $VBoxContainer/FooterContainer/BackwardButton.disabled = false
-    $VBoxContainer/FooterContainer/HomeButton.disabled = false
-    $VBoxContainer/HeaderContainer/ForwardButton.disabled = true
-    $VBoxContainer/FooterContainer/ForwardButton.disabled = true

@@ -15,15 +15,16 @@ func _ready() -> void:
         remove_prev_scene()
     scene = RESTORE_SCENE.instantiate()
     hud.add(scene)
-    hud.title_state()
     hud.forward.connect(_on_new_session_started)
     scene.restore_session.connect(_on_show_session)
 
 func _on_new_session_started() -> void:
     scene = SESSION_SCENE.instantiate()    
     hud.add(scene)
-    hud.non_title_state()
-    scene.submit.connect(_on_session_submitted)    
+    hud.header_forward_button.disabled = true
+    hud.footer_forward_button.disabled = true
+    hud.forward.connect(_on_session_submitted)    
+    scene.completed.connect(_on_completed)
     
 func _on_session_submitted() -> void:
     remove_prev_scene()
@@ -70,3 +71,11 @@ func _on_continue_session() -> void:
     scene = WORKSPACE_SCENE.instantiate()
     add_child(scene)
     scene.done.connect(_on_cube_done)
+
+func _on_completed() -> void:
+    if CurrentPile.is_valid():
+        hud.header_forward_button.disabled = false
+        hud.footer_forward_button.disabled = false
+    else:
+        hud.header_forward_button.disabled = true
+        hud.footer_forward_button.disabled = true

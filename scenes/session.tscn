@@ -5,14 +5,6 @@
 [node name="Session" type="Node2D"]
 script = ExtResource("1_wfdo7")
 
-[node name="TitleLabel" type="Label" parent="."]
-offset_right = 720.0
-offset_bottom = 40.0
-size_flags_horizontal = 0
-text = "KÖBÖZŐ"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="SubtitleLabel" type="Label" parent="."]
 offset_top = 40.0
 offset_right = 720.0
@@ -83,26 +75,7 @@ offset_top = 528.0
 offset_right = 648.0
 offset_bottom = 596.0
 focus_neighbor_top = NodePath("../SiteLineEdit")
-focus_neighbor_bottom = NodePath("../SubmitButton")
-focus_next = NodePath("../SubmitButton")
 focus_previous = NodePath("../SiteLineEdit")
-
-[node name="SubmitButton" type="Button" parent="."]
-offset_left = 64.0
-offset_top = 704.0
-offset_right = 648.0
-offset_bottom = 768.0
-disabled = true
-text = "Tovább"
-
-[node name="FooterLabel" type="Label" parent="."]
-offset_top = 1240.0
-offset_right = 720.0
-offset_bottom = 1280.0
-size_flags_horizontal = 0
-text = "WEVIK"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Label5" type="Label" parent="."]
 offset_left = 352.0
@@ -119,4 +92,3 @@ text = "(Enter, ha nem látszik a Tovább gomb!)"
 [connection signal="text_submitted" from="SiteLineEdit" to="." method="_on_site_line_edit_text_submitted"]
 [connection signal="text_changed" from="PersonLineEdit" to="." method="_on_person_line_edit_text_changed"]
 [connection signal="text_submitted" from="PersonLineEdit" to="." method="_on_person_line_edit_text_submitted"]
-[connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]
