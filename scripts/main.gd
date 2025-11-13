@@ -21,15 +21,15 @@ func _ready() -> void:
 func _on_new_session_started() -> void:
     scene = SESSION_SCENE.instantiate()    
     hud.add(scene)
+    hud.forward.disconnect(_on_new_session_started)
     hud.header_forward_button.disabled = true
     hud.footer_forward_button.disabled = true
     hud.forward.connect(_on_session_submitted)    
-    scene.completed.connect(_on_completed)
+    scene.check.connect(_on_check)
     
 func _on_session_submitted() -> void:
-    remove_prev_scene()
     scene = TYPE_SCENE.instantiate()
-    add_child(scene)
+    hud.add(scene)
     scene.type_selected.connect(_on_type_selected)
 
 func _on_type_selected(type: String) -> void:
@@ -72,7 +72,7 @@ func _on_continue_session() -> void:
     add_child(scene)
     scene.done.connect(_on_cube_done)
 
-func _on_completed() -> void:
+func _on_check() -> void:
     if CurrentPile.is_valid():
         hud.header_forward_button.disabled = false
         hud.footer_forward_button.disabled = false

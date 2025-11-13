@@ -1,44 +1,44 @@
 extends Node
 
-signal completed(bool)
+signal check
 
 func _ready() -> void:
     $CompanyLineEdit.call_deferred("grab_focus")
 
 func _on_company_line_edit_text_changed(new_text: String) -> void:
     CurrentPile.company = new_text
-    completed.emit()
+    check.emit()
 
 func _on_company_line_edit_text_submitted(new_text: String) -> void:
     CurrentPile.company = new_text
-    completed.emit()
+    check.emit()
     $CityLineEdit.call_deferred("grab_focus")
 
 func _on_city_line_edit_text_changed(new_text: String) -> void:
     CurrentPile.city = new_text
-    completed.emit()
+    check.emit()
 
 func _on_city_line_edit_text_submitted(new_text: String) -> void:
     CurrentPile.city = new_text
-    completed.emit()
+    check.emit()
     $SiteLineEdit.call_deferred("grab_focus")
 
 func _on_site_line_edit_text_changed(new_text: String) -> void:
     CurrentPile.site = new_text
-    completed.emit()
+    check.emit()
 
 func _on_site_line_edit_text_submitted(new_text: String) -> void:
     CurrentPile.site = new_text
-    completed.emit()
+    check.emit()
     $PersonLineEdit.call_deferred("grab_focus")
 
 func _on_person_line_edit_text_changed(new_text: String) -> void:
     CurrentPile.person = new_text
-    completed.emit()
+    check.emit()
 
 func _on_person_line_edit_text_submitted(new_text: String) -> void:
     CurrentPile.person = new_text
-    completed.emit()
+    check.emit()
     $SubmitButton.call_deferred("grab_focus")
 
 func set_session() -> void:
@@ -50,4 +50,3 @@ func set_session() -> void:
     $SiteLineEdit.insert_text_at_caret(CurrentPile.site)
     $PersonLineEdit.clear()
     $PersonLineEdit.insert_text_at_caret(CurrentPile.person)
-    $SubmitButton.call_deferred("grab_focus")
