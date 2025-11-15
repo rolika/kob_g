@@ -2,93 +2,90 @@
 
 [ext_resource type="Script" uid="uid://c8l31np11m5oh" path="res://scripts/session.gd" id="1_wfdo7"]
 
-[node name="Session" type="Node2D"]
+[node name="SessionScrollContainer" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_wfdo7")
 
-[node name="SubtitleLabel" type="Label" parent="."]
-offset_top = 40.0
-offset_right = 720.0
-offset_bottom = 80.0
-size_flags_horizontal = 0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(688, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="SubtitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
 text = "Add meg az alábbi adatokat!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="."]
-offset_left = 64.0
-offset_top = 112.0
-offset_right = 195.0
-offset_bottom = 135.0
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 text = "Erdőbirtokosság:"
 
-[node name="CompanyLineEdit" type="LineEdit" parent="."]
-offset_left = 64.0
-offset_top = 144.0
-offset_right = 648.0
-offset_bottom = 212.0
+[node name="CompanyLineEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 8
 focus_neighbor_bottom = NodePath("../CityLineEdit")
 focus_next = NodePath("../CityLineEdit")
 
-[node name="Label2" type="Label" parent="."]
-offset_left = 64.0
-offset_top = 240.0
-offset_right = 195.0
-offset_bottom = 263.0
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 text = "Helység:"
 
-[node name="CityLineEdit" type="LineEdit" parent="."]
-offset_left = 64.0
-offset_top = 272.0
-offset_right = 648.0
-offset_bottom = 340.0
+[node name="CityLineEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 8
 focus_neighbor_top = NodePath("../CompanyLineEdit")
 focus_neighbor_bottom = NodePath("../SiteLineEdit")
 focus_next = NodePath("../SiteLineEdit")
 focus_previous = NodePath("../CompanyLineEdit")
 
-[node name="Label3" type="Label" parent="."]
-offset_left = 64.0
-offset_top = 368.0
-offset_right = 195.0
-offset_bottom = 391.0
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 text = "Rakodóhely:"
 
-[node name="SiteLineEdit" type="LineEdit" parent="."]
-offset_left = 64.0
-offset_top = 400.0
-offset_right = 648.0
-offset_bottom = 468.0
+[node name="SiteLineEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 8
 focus_neighbor_top = NodePath("../CityLineEdit")
 focus_neighbor_bottom = NodePath("../PersonLineEdit")
 focus_next = NodePath("../PersonLineEdit")
 
-[node name="Label4" type="Label" parent="."]
-offset_left = 64.0
-offset_top = 496.0
-offset_right = 195.0
-offset_bottom = 519.0
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 text = "Köböző személy:"
 
-[node name="PersonLineEdit" type="LineEdit" parent="."]
-offset_left = 64.0
-offset_top = 528.0
-offset_right = 648.0
-offset_bottom = 596.0
+[node name="PersonLineEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 8
 focus_neighbor_top = NodePath("../SiteLineEdit")
 focus_previous = NodePath("../SiteLineEdit")
 
-[node name="Label5" type="Label" parent="."]
-offset_left = 352.0
-offset_top = 608.0
-offset_right = 647.0
-offset_bottom = 628.0
-text = "(Enter, ha nem látszik a Tovább gomb!)"
-
-[connection signal="text_changed" from="CompanyLineEdit" to="." method="_on_company_line_edit_text_changed"]
-[connection signal="text_submitted" from="CompanyLineEdit" to="." method="_on_company_line_edit_text_submitted"]
-[connection signal="text_changed" from="CityLineEdit" to="." method="_on_city_line_edit_text_changed"]
-[connection signal="text_submitted" from="CityLineEdit" to="." method="_on_city_line_edit_text_submitted"]
-[connection signal="text_changed" from="SiteLineEdit" to="." method="_on_site_line_edit_text_changed"]
-[connection signal="text_submitted" from="SiteLineEdit" to="." method="_on_site_line_edit_text_submitted"]
-[connection signal="text_changed" from="PersonLineEdit" to="." method="_on_person_line_edit_text_changed"]
-[connection signal="text_submitted" from="PersonLineEdit" to="." method="_on_person_line_edit_text_submitted"]
+[connection signal="text_changed" from="VBoxContainer/CompanyLineEdit" to="." method="_on_company_line_edit_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/CompanyLineEdit" to="." method="_on_company_line_edit_text_submitted"]
+[connection signal="text_changed" from="VBoxContainer/CityLineEdit" to="." method="_on_city_line_edit_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/CityLineEdit" to="." method="_on_city_line_edit_text_submitted"]
+[connection signal="text_changed" from="VBoxContainer/SiteLineEdit" to="." method="_on_site_line_edit_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/SiteLineEdit" to="." method="_on_site_line_edit_text_submitted"]
+[connection signal="text_changed" from="VBoxContainer/PersonLineEdit" to="." method="_on_person_line_edit_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/PersonLineEdit" to="." method="_on_person_line_edit_text_submitted"]
