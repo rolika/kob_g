@@ -54,6 +54,7 @@ icon = ExtResource("2_5ysmq")
 [node name="ContentContainer" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(704, 1348)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_6fi6k")
 
 [node name="FooterContainer" type="HBoxContainer" parent="VBoxContainer"]
