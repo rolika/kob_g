@@ -1,11 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cumltahf0qpyi"]
+[gd_scene load_steps=11 format=3 uid="uid://cumltahf0qpyi"]
 
 [ext_resource type="Script" uid="uid://do1juptun06q8" path="res://scripts/hud.gd" id="1_6fi6k"]
 [ext_resource type="Texture2D" uid="uid://bgvnxgaceb36u" path="res://assets/icons/backward_icon.png" id="1_oo0fn"]
 [ext_resource type="Texture2D" uid="uid://bjgcj1ja71uec" path="res://assets/icons/forward_icon.png" id="2_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://o7vhkl1djkdl" path="res://assets/icons/wevik_icon.png" id="3_5ysmq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6fi6k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uo2fv"]
 
@@ -52,11 +50,11 @@ vertical_alignment = 1
 layout_mode = 2
 icon = ExtResource("2_5ysmq")
 
-[node name="ContentContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="ContentContainer" type="MarginContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(704, 1340)
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6fi6k")
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
 
 [node name="FooterContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(704, 64)
