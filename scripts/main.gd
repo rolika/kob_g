@@ -11,8 +11,6 @@ var scene: Node = null
 @onready var hud: MarginContainer = $Hud
 
 func _ready() -> void:
-    if scene != null:
-        remove_prev_scene()
     scene = RESTORE_SCENE.instantiate()
     hud.add(scene)
     hud.forward.connect(_on_new_session_started)
