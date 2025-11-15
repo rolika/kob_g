@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dtlfdgttv3qsy" path="res://scripts/restore.gd" id="1_xoj2h"]
 
 [node name="RestoreScrollContainer" type="ScrollContainer"]
-custom_minimum_size = Vector2(688, 1340)
+custom_minimum_size = Vector2(688, 1260)
 offset_right = 688.0
 offset_bottom = 800.0
 horizontal_scroll_mode = 0
