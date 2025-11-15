@@ -7,3 +7,5 @@
 script = ExtResource("1_ig7tw")
 
 [node name="Hud" parent="." instance=ExtResource("2_0xm2m")]
+size_flags_horizontal = 3
+size_flags_vertical = 3
