@@ -4,7 +4,7 @@ signal backward
 signal forward
 signal home
 
-var screen: Node2D = null
+var screen: Container = null
 
 @onready var header_backward_button: Button = $VBoxContainer/HeaderContainer/BackwardButton
 @onready var header_forward_button: Button = $VBoxContainer/HeaderContainer/ForwardButton
@@ -28,7 +28,7 @@ func _on_forward_button_pressed() -> void:
 func _on_home_button_pressed() -> void:
     home.emit()
 
-func add(content: Node2D) -> void:
+func add(content: Container) -> void:
     if screen != null:
         screen.call_deferred("free")
     screen = content

@@ -1,4 +1,4 @@
-extends Node2D
+extends ScrollContainer
 
 const RESTORE_CONTROL: PackedScene = preload("res://scenes/restore_control.tscn")
 const CONFIRM_DIALOG: PackedScene = preload("res://scenes/confirm_dialog.tscn")
@@ -13,7 +13,7 @@ func _ready() -> void:
         var pile: Pile = Pile.new()
         pile.set_session_data(session)
         var restore_control = RESTORE_CONTROL.instantiate()
-        $ScrollContainer/VBoxContainer.add_child(restore_control)
+        $VBoxContainer.add_child(restore_control)
         restore_control.continue_session.connect(_on_continue_session_button_pressed.bind(session))
         restore_control.remove_session.connect(_on_remove_session_button_pressed.bind(session.index))
         restore_control.populate(pile)    
@@ -22,7 +22,7 @@ func _on_continue_session_button_pressed(session: Dictionary) -> void:
     restore_session.emit(session)
 
 func _on_remove_session_button_pressed(index: int) -> void:
-    for child in $ScrollContainer/VBoxContainer.get_children():
+    for child in $VBoxContainer.get_children():
         if index == child.get_node("HBoxContainer/PileCard").pile.index:
             var dialog = CONFIRM_DIALOG.instantiate()
             dialog.confirmed.connect(_remove_confirmed.bind(child))
