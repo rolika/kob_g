@@ -39,7 +39,6 @@ func _on_person_line_edit_text_changed(new_text: String) -> void:
 func _on_person_line_edit_text_submitted(new_text: String) -> void:
     CurrentPile.person = new_text
     check.emit()
-    $SubmitButton.call_deferred("grab_focus")
 
 func set_session() -> void:
     $CompanyLineEdit.clear()
