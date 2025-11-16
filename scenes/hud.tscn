@@ -57,12 +57,10 @@ layout_mode = 2
 theme_override_constants/separation = 32
 theme_override_styles/separator = SubResource("StyleBoxEmpty_6fi6k")
 
-[node name="ContentContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="ContentContainer" type="CenterContainer" parent="VBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(704, 1260)
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_right = 8
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
