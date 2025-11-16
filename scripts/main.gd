@@ -31,18 +31,16 @@ func _on_session_submitted() -> void:
     scene.type_selected.connect(_on_type_selected)
 
 func _on_type_selected(type: String) -> void:
-    remove_prev_scene()
     scene = LENGTH_SCENE.instantiate()
     CurrentPile.type = type
-    add_child(scene)
+    hud.add(scene)
     scene.length_selected.connect(_on_length_selected)
 
 func _on_length_selected(length: float) -> void:
-    remove_prev_scene()
     scene = WORKSPACE_SCENE.instantiate()
     CurrentPile.length = length
     CurrentPile.init()
-    add_child(scene)
+    hud.add(scene)
     scene.done.connect(_on_cube_done)
     scene.set_position(Vector2(0, 0))
 
