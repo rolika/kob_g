@@ -41,7 +41,6 @@ func _on_length_selected(length: float) -> void:
     CurrentPile.length = length
     CurrentPile.init()
     hud.add(scene)
-    scene.done.connect(_on_cube_done)
     scene.set_position(Vector2(0, 0))
 
 func _on_cube_done() -> void:
