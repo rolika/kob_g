@@ -67,7 +67,9 @@ func get_cubedata(type: String = CurrentPile.type, length: float = CurrentPile.l
     return result
 
 func _get_session_count(pilefolder: String = PILEFOLDER) -> int:
-    return get_sessions(pilefolder).size() + 1   # the default 0. index is used to check on a new session
+    # since the sessions come sorted on newest first, the first element has the highest index
+    var new_index: int = clampi(get_sessions(pilefolder)[0].index + 1, 0, 998)
+    return new_index
 
 func write_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:
     assert(DirAccess.dir_exists_absolute(pilefolder))
@@ -96,7 +98,9 @@ func get_sessions(pilefolder: String = PILEFOLDER) -> Array[Dictionary]:
         var file = FileAccess.open(pilefolder.path_join(filename), FileAccess.READ)
         sessions.append(file.get_var())
         sessions[-1]["index"] = index
-        file.close()
+        file.close()    
+    if sessions.size() > 1:
+        sessions.sort_custom(func(s1, s2): return s1.timestamp > s2.timestamp)  # newer come first
     return sessions
 
 func delete_session(index: int, pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:      
