@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://d0y1lwxa0sxg6" path="res://scripts/pile_card.gd" id="1_2mn5y"]
 
 [node name="PileCard" type="Control"]
+custom_minimum_size = Vector2(414, 95)
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 0
 script = ExtResource("1_2mn5y")
 
 [node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(414, 95)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
