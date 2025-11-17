@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bw8fxpvc1gluu" path="res://assets/icons/continue_icon.png" id="4_qpknd"]
 
 [node name="RestoreControl" type="Control"]
+custom_minimum_size = Vector2(688, 128)
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2

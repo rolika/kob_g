@@ -11,10 +11,10 @@ func _ready() -> void:
         var pile: Pile = Pile.new()
         pile.set_session_data(session)
         var restore_control = RESTORE_CONTROL.instantiate()
+        restore_control.populate(pile)    
         $VBoxContainer.add_child(restore_control)
         restore_control.continue_session.connect(_on_continue_session_button_pressed.bind(session))
         restore_control.remove_session.connect(_on_remove_session_button_pressed.bind(session.index))
-        restore_control.populate(pile)    
 
 func _on_continue_session_button_pressed(session: Dictionary) -> void:
     restore_session.emit(session)
