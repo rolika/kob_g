@@ -11,14 +11,6 @@ var screen: Container = null
 @onready var footer_backward_button: Button = $VBoxContainer/FooterContainer/BackwardButton
 @onready var footer_forward_button: Button = $VBoxContainer/FooterContainer/ForwardButton
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-    pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-    pass
-
 func _on_backward_button_pressed() -> void:
     backward.emit()
 
