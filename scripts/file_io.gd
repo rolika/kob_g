@@ -68,7 +68,8 @@ func get_cubedata(type: String = CurrentPile.type, length: float = CurrentPile.l
 
 func _get_session_count(pilefolder: String = PILEFOLDER) -> int:
     # since the sessions come sorted on newest first, the first element has the highest index
-    var new_index: int = clampi(get_sessions(pilefolder)[0].index + 1, 0, 998)
+    var sessions: Array[Dictionary] = get_sessions(pilefolder)
+    var new_index: int = 1 if sessions.size() < 1 else clampi(sessions[0].index + 1, 0, 998)
     return new_index
 
 func write_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:
