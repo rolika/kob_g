@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtgddeolgatp0"]
+[gd_scene load_steps=8 format=3 uid="uid://dtgddeolgatp0"]
 
 [ext_resource type="PackedScene" uid="uid://cf1065x07egsy" path="res://scenes/pile_head.tscn" id="2_q5px1"]
 [ext_resource type="Script" uid="uid://ctvn7giuucfvt" path="res://scripts/report.gd" id="2_smm52"]
@@ -35,26 +35,6 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5px1"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4lv02"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bsvqr"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txauj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4fhai"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yvsl5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fjlyb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p25vq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_syq11"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nvk87"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_smm52"]
 
 [node name="CenterContainer" type="CenterContainer"]
@@ -62,7 +42,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Report" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(720, 1280)
+custom_minimum_size = Vector2(688, 1260)
 layout_mode = 2
 script = ExtResource("2_smm52")
 
@@ -78,15 +58,16 @@ vertical_alignment = 1
 
 [node name="PileHead" parent="Report" instance=ExtResource("2_q5px1")]
 offset_top = 40.0
-offset_bottom = 80.0
+offset_right = 688.0
+offset_bottom = 131.0
 
 [node name="ReportGrid" type="GridContainer" parent="Report"]
 custom_minimum_size = Vector2(656, 0)
 layout_mode = 0
-offset_left = 32.0
-offset_top = 140.0
-offset_right = 688.0
-offset_bottom = 180.0
+offset_left = 16.0
+offset_top = 144.0
+offset_right = 672.0
+offset_bottom = 184.0
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 8
@@ -162,7 +143,7 @@ points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="PersonButton" type="Button" parent="Report"]
+[node name="PersonLabel" type="Label" parent="Report"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 0
 offset_left = 424.0
@@ -170,17 +151,6 @@ offset_top = 1232.0
 offset_right = 624.0
 offset_bottom = 1272.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_q5px1")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_4lv02")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_bsvqr")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_txauj")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_4fhai")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_yvsl5")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_fjlyb")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_p25vq")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_syq11")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_nvk87")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_smm52")
 text = "Weisz Viktor"
-
-[connection signal="pressed" from="Report/PersonButton" to="Report" method="_on_person_button_pressed"]
+horizontal_alignment = 1
