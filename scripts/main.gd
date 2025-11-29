@@ -39,7 +39,19 @@ func _on_show_session(session: Dictionary) -> void:
 func _on_session_submitted() -> void:
     scene = TYPE_SCENE.instantiate()
     hud.change_screen(scene)
+    hud.enable_backward()
+    hud.backward.connect(_on_show_incomplete_session)
     scene.type_selected.connect(_on_type_selected)
+
+func _on_show_incomplete_session() -> void:
+    scene = SESSION_SCENE.instantiate()
+    hud.change_screen(scene)
+    scene.set_session()
+    hud.enable_forward()
+    hud.enable_backward()
+    hud.forward.connect(_on_session_submitted)
+    hud.backward.connect(_ready)
+    scene.check.connect(_on_check)    
 
 func _on_type_selected(type: String) -> void:
     scene = LENGTH_SCENE.instantiate()
