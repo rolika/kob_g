@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cd3v7gxqe21jg"]
 
-[ext_resource type="Script" uid="uid://dtlfdgttv3qsy" path="res://scripts/restore.gd" id="1_xoj2h"]
+[ext_resource type="Script" uid="uid://dtlfdgttv3qsy" path="res://scripts/title.gd" id="1_4ignj"]
 
 [node name="RestoreScrollContainer" type="ScrollContainer"]
 custom_minimum_size = Vector2(688, 1260)
@@ -8,7 +8,7 @@ offset_right = 688.0
 offset_bottom = 800.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
-script = ExtResource("1_xoj2h")
+script = ExtResource("1_4ignj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 1340)
