@@ -57,6 +57,8 @@ func _on_type_selected(type: String) -> void:
     scene = LENGTH_SCENE.instantiate()
     CurrentPile.type = type
     hud.change_screen(scene)
+    hud.enable_backward()
+    hud.backward.connect(_on_session_submitted)
     scene.length_selected.connect(_on_length_selected)
 
 func _on_length_selected(length: float) -> void:
