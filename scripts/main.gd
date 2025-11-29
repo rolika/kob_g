@@ -20,7 +20,9 @@ func _ready() -> void:
 func _on_new_session_started() -> void:
     scene = SESSION_SCENE.instantiate()    
     hud.change_screen(scene)
-    hud.forward.connect(_on_session_submitted)    
+    hud.enable_backward()
+    hud.forward.connect(_on_session_submitted)
+    hud.backward.connect(_ready) 
     scene.check.connect(_on_check)
 
 func _on_show_session(session: Dictionary) -> void:
@@ -29,7 +31,9 @@ func _on_show_session(session: Dictionary) -> void:
     hud.change_screen(scene)
     scene.set_session()
     hud.enable_forward()
-    hud.forward.connect(_on_continue_session) 
+    hud.enable_backward()
+    hud.forward.connect(_on_continue_session)
+    hud.backward.connect(_ready)
     scene.check.connect(_on_check)
     
 func _on_session_submitted() -> void:
