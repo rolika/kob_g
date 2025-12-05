@@ -11,6 +11,7 @@ var scene: Node = null
 @onready var hud: Hud = $Hud
 
 func _ready() -> void:
+    CurrentPile.reset_pile()
     scene = TITLE_SCENE.instantiate()
     hud.change_screen(scene)
     hud.enable_forward()

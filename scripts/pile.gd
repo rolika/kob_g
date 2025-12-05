@@ -1,6 +1,4 @@
-extends Node
-
-class_name Pile
+class_name Pile extends Node
 
 const CUBE_DATA_PRECISION: float = 0.001
 const STARTING_DIAMETER: int = 12
@@ -26,6 +24,17 @@ func init() -> void:
     for cube in cube_data:
         counter[cube] = 0
     File_IO.write_session()
+
+func reset_pile() -> void:
+    company = ""
+    city = ""
+    site = ""
+    person = ""
+    type = ""
+    length = 0.0
+    counter = {}
+    index = 0
+    timestamp = int(Time.get_unix_time_from_system())
 
 func get_volume(cube: int) -> float:
     return cube * counter[cube] * CUBE_DATA_PRECISION
