@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2ac32l5q465y"]
+[gd_scene load_steps=6 format=3 uid="uid://b2ac32l5q465y"]
 
 [ext_resource type="Script" uid="uid://c8l31np11m5oh" path="res://scripts/session.gd" id="1_wfdo7"]
 
@@ -7,6 +7,10 @@
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_wfdo7"]
 color = Color(0.192157, 0.345098, 0.109804, 1)
 thickness = 2
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_wfdo7"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_w6gu6"]
 
 [node name="SessionScrollContainer" type="ScrollContainer"]
 custom_minimum_size = Vector2(688, 1260)
@@ -97,6 +101,59 @@ layout_mode = 2
 size_flags_horizontal = 8
 focus_neighbor_top = NodePath("../SiteLineEdit")
 focus_previous = NodePath("../SiteLineEdit")
+
+[node name="HSeparator6" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxLine_wfdo7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Rönk-felirat pontossága:"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(182, 96)
+layout_mode = 2
+button_pressed = true
+button_group = SubResource("ButtonGroup_wfdo7")
+text = "század"
+
+[node name="CheckBox2" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(182, 96)
+layout_mode = 2
+button_group = SubResource("ButtonGroup_wfdo7")
+text = "ezred"
+
+[node name="HSeparator7" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxLine_wfdo7")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Számítás pontossága:"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(182, 96)
+layout_mode = 2
+button_group = SubResource("ButtonGroup_w6gu6")
+text = "század"
+
+[node name="CheckBox2" type="CheckBox" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(182, 96)
+layout_mode = 2
+button_pressed = true
+button_group = SubResource("ButtonGroup_w6gu6")
+text = "ezred
+"
 
 [connection signal="text_changed" from="VBoxContainer/CompanyLineEdit" to="." method="_on_company_line_edit_text_changed"]
 [connection signal="text_submitted" from="VBoxContainer/CompanyLineEdit" to="." method="_on_company_line_edit_text_submitted"]
