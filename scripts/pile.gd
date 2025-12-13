@@ -16,10 +16,9 @@ var length: float
 var counter: Dictionary[int, int]
 var index: int = 0
 var timestamp: int = int(Time.get_unix_time_from_system())
-var labeling_precision: int = Precision.THREE_DIGITS
+var labeling_precision: int = Precision.TWO_DIGITS
 var calculation_precision: int = Precision.THREE_DIGITS
-var labeling_format: String = TWO_DIGIT_FMT
-var volume_format: String = THREE_DIGIT_FMT
+var volume_format: String = TWO_DIGIT_FMT if labeling_precision == Precision.TWO_DIGITS else THREE_DIGIT_FMT
 var length_format: String = TWO_DIGIT_FMT
 
 func is_valid() -> bool:
@@ -99,14 +98,16 @@ func translate_decimal(num: Variant, fmt: String = THREE_DIGIT_FMT) -> Variant:
         var text = fmt % num
         return text.replace(".", ",")
     elif is_instance_of(num, TYPE_STRING):
-        return float(num.replace(",", "."))
+        var precision: float = 10 ** -calculation_precision
+        var tmp: float = float(num.replace(",", "."))
+        return round(tmp / precision) * precision
     return -1
 
 func get_total_volume_formatted() -> String:
-    return translate_decimal(get_total_volume()) + " m3"
+    return translate_decimal(get_total_volume(), volume_format) + " m3"
 
 func get_volume_formatted(cube: int) -> String:
-    return translate_decimal(get_volume(cube))
+    return translate_decimal(get_volume(cube), volume_format)
 
 func get_length_formatted(length_: float = length) -> String:
     return translate_decimal(length_, length_format) + " m"
