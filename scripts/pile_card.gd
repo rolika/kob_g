@@ -11,8 +11,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
     if pile != null:
-        $GridContainer/LengthLabel.text = pile.get_length_fmt()
-        $GridContainer/VolumeLabel.text = pile.get_total_volume_fmt()
+        $GridContainer/LengthLabel.text = pile.get_length_formatted()
+        $GridContainer/VolumeLabel.text = pile.get_total_volume_formatted()
 
 func set_pile(pile_arg: Pile) -> void:
     pile = pile_arg

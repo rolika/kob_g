@@ -43,7 +43,7 @@ func _ready() -> void:
     var spacer1: Label = Label.new()
     var spacer2: Label = Label.new()
     volume_label.text = "összesen:"
-    volume_value.text = CurrentPile.get_total_volume_fmt()
+    volume_value.text = CurrentPile.get_total_volume_formatted()
     spacer1.text = ""
     spacer2.text = ""
     $ReportGrid.add_child(volume_label)

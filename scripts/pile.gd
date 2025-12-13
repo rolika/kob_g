@@ -102,13 +102,13 @@ func translate_decimal(num: Variant, fmt: String = THREE_DIGIT_FMT) -> Variant:
         return float(num.replace(",", "."))
     return -1
 
-func get_total_volume_fmt() -> String:
+func get_total_volume_formatted() -> String:
     return translate_decimal(get_total_volume()) + " m3"
 
-func get_volume_fmt(cube: int) -> String:
+func get_volume_formatted(cube: int) -> String:
     return translate_decimal(get_volume(cube))
 
-func get_length_fmt(length_: float = length) -> String:
+func get_length_formatted(length_: float = length) -> String:
     return translate_decimal(length_, length_format) + " m"
 
 func get_cube_label_text(cube: int) -> String:

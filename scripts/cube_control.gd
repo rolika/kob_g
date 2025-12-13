@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
     counter_label.text = str(CurrentPile.counter[cube])
     diameter_label.text = str(diameter)
     cube_label.text = CurrentPile.get_cube_label_text(cube)
-    volume_label.text = CurrentPile.get_volume_fmt(cube)
+    volume_label.text = CurrentPile.get_volume_formatted(cube)
     precision_label.text = CurrentPile.get_precision_label()
 
 func set_cube_data(diameter_: int = 20, cube_: int = 15) -> void:
