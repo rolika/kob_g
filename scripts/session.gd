@@ -49,3 +49,6 @@ func set_session() -> void:
     $VBoxContainer/SiteLineEdit.insert_text_at_caret(CurrentPile.site)
     $VBoxContainer/PersonLineEdit.clear()
     $VBoxContainer/PersonLineEdit.insert_text_at_caret(CurrentPile.person)
+
+func _on_labeling_prec_2_check_toggled(toggled_on: bool) -> void:
+    pass # Replace with function body.

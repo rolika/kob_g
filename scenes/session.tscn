@@ -115,14 +115,14 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 text = "Rönk-felirat pontossága:"
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+[node name="LabelingPrec2Check" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(182, 96)
 layout_mode = 2
 button_pressed = true
 button_group = SubResource("ButtonGroup_wfdo7")
 text = "század"
 
-[node name="CheckBox2" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+[node name="LabelingPrec3Check" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(182, 96)
 layout_mode = 2
 button_group = SubResource("ButtonGroup_wfdo7")
@@ -141,13 +141,13 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 text = "Számítás pontossága:"
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer2"]
+[node name="CalcPrec2Check" type="CheckBox" parent="VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(182, 96)
 layout_mode = 2
 button_group = SubResource("ButtonGroup_w6gu6")
 text = "század"
 
-[node name="CheckBox2" type="CheckBox" parent="VBoxContainer/HBoxContainer2"]
+[node name="CalcPrec3Check" type="CheckBox" parent="VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(182, 96)
 layout_mode = 2
 button_pressed = true
@@ -163,3 +163,4 @@ text = "ezred
 [connection signal="text_submitted" from="VBoxContainer/SiteLineEdit" to="." method="_on_site_line_edit_text_submitted"]
 [connection signal="text_changed" from="VBoxContainer/PersonLineEdit" to="." method="_on_person_line_edit_text_changed"]
 [connection signal="text_submitted" from="VBoxContainer/PersonLineEdit" to="." method="_on_person_line_edit_text_submitted"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/LabelingPrec2Check" to="." method="_on_labeling_prec_2_check_toggled"]
