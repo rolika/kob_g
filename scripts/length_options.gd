@@ -6,7 +6,7 @@ signal length_selected(length: float)
 func _ready() -> void:
     for woodlength in File_IO.get_woodlengths():
         var button = Button.new()
-        button.text = CurrentPile.get_length_fmt(woodlength)
+        button.text = CurrentPile.get_length_formatted(woodlength)
         button.icon = ICON
         button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
         button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
