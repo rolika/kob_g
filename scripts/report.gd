@@ -23,7 +23,7 @@ func _ready() -> void:
         singlevolume.add_theme_stylebox_override("normal", cellstyle)
         singlevolume.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
         var volume: Label = Label.new()
-        volume.text = CurrentPile.translate_decimal(CurrentPile.get_volume(cube))
+        volume.text = CurrentPile.get_volume_for(cube)
         volume.add_theme_stylebox_override("normal", cellstyle)
         volume.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
         if CurrentPile.counter[cube] < 1:            

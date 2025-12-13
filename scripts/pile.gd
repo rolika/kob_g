@@ -16,7 +16,7 @@ var counter: Dictionary[int, int]
 var index: int = 0
 var timestamp: int = int(Time.get_unix_time_from_system())
 var labeling_precision: int = Precision.TWO_DIGITS
-var calculation_precision: int = Precision.TWO_DIGITS
+var calculation_precision: int = Precision.THREE_DIGITS
 var data_precision: float = 0.01 if calculation_precision == Precision.TWO_DIGITS else 0.001
 var volume_format: String = TWO_DIGIT_FMT if calculation_precision == Precision.TWO_DIGITS else THREE_DIGIT_FMT
 var length_format: String = TWO_DIGIT_FMT
@@ -128,3 +128,6 @@ func get_precision_cube_value(cube: int, precision: int) -> int:
 
 func get_single_volume(cube: int) -> String:
     return translate_decimal(get_precision_cube_value(cube, calculation_precision) * data_precision, volume_format)
+
+func get_volume_for(cube: int) -> String:
+    return translate_decimal(get_volume(cube), volume_format)
