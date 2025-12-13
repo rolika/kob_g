@@ -18,7 +18,7 @@ var index: int = 0
 var timestamp: int = int(Time.get_unix_time_from_system())
 var labeling_precision: int = Precision.TWO_DIGITS
 var calculation_precision: int = Precision.THREE_DIGITS
-var volume_format: String = TWO_DIGIT_FMT if labeling_precision == Precision.TWO_DIGITS else THREE_DIGIT_FMT
+var volume_format: String = TWO_DIGIT_FMT if calculation_precision == Precision.TWO_DIGITS else THREE_DIGIT_FMT
 var length_format: String = TWO_DIGIT_FMT
 
 func is_valid() -> bool:
