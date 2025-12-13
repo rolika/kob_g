@@ -1,7 +1,6 @@
 class_name Pile extends Node
 
 const STARTING_DIAMETER: int = 12
-const STORED_DATA_PRECISION: float = 0.001
 
 enum Precision {TWO_DIGITS = 2, THREE_DIGITS = 3}
 const TWO_DIGIT_FMT: String = "%.2f"
@@ -16,8 +15,9 @@ var length: float
 var counter: Dictionary[int, int]
 var index: int = 0
 var timestamp: int = int(Time.get_unix_time_from_system())
-var labeling_precision: int = Precision.THREE_DIGITS
+var labeling_precision: int = Precision.TWO_DIGITS
 var calculation_precision: int = Precision.TWO_DIGITS
+var data_precision: float = 0.01 if calculation_precision == Precision.TWO_DIGITS else 0.001
 var volume_format: String = TWO_DIGIT_FMT if calculation_precision == Precision.TWO_DIGITS else THREE_DIGIT_FMT
 var length_format: String = TWO_DIGIT_FMT
 
@@ -46,10 +46,7 @@ func _reset_counter(type_: String = CurrentPile.type, length_: float = CurrentPi
         counter[cube] = 0
 
 func get_volume(cube: int) -> float:
-    var cube_value: int = get_precision_cube_value(cube, calculation_precision)
-    if calculation_precision == Precision.TWO_DIGITS:
-        cube_value *= 10
-    return cube_value * counter[cube] * STORED_DATA_PRECISION
+    return get_precision_cube_value(cube, calculation_precision) * counter[cube] * data_precision
 
 func get_total_volume() -> float:
     var total_volume = 0.0
@@ -128,3 +125,6 @@ func get_precision_cube_value(cube: int, precision: int) -> int:
         return integer_part
     else:
         return cube
+
+func get_single_volume(cube: int) -> String:
+    return translate_decimal(get_precision_cube_value(cube, calculation_precision) * data_precision, volume_format)

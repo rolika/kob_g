@@ -19,7 +19,7 @@ func _ready() -> void:
         quantity.add_theme_stylebox_override("normal", cellstyle)
         quantity.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
         var singlevolume: Label = Label.new()
-        singlevolume.text = str(CurrentPile.translate_decimal(cube * CurrentPile.STORED_DATA_PRECISION))
+        singlevolume.text = CurrentPile.get_single_volume(cube)
         singlevolume.add_theme_stylebox_override("normal", cellstyle)
         singlevolume.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
         var volume: Label = Label.new()
