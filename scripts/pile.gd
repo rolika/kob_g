@@ -17,7 +17,7 @@ var counter: Dictionary[int, int]
 var index: int = 0
 var timestamp: int = int(Time.get_unix_time_from_system())
 var labeling_precision: int = Precision.TWO_DIGITS
-var calculation_precision: int = Precision.THREE_DIGITS
+var calculation_precision: int = Precision.TWO_DIGITS
 var volume_format: String = TWO_DIGIT_FMT if calculation_precision == Precision.TWO_DIGITS else THREE_DIGIT_FMT
 var length_format: String = TWO_DIGIT_FMT
 
@@ -46,7 +46,7 @@ func _reset_counter(type_: String = CurrentPile.type, length_: float = CurrentPi
         counter[cube] = 0
 
 func get_volume(cube: int) -> float:
-    return cube * counter[cube] * STORED_DATA_PRECISION
+    return get_precision_cube_value(cube) * counter[cube] * STORED_DATA_PRECISION
 
 func get_total_volume() -> float:
     var total_volume = 0.0
@@ -111,13 +111,17 @@ func get_length_formatted(length_: float = length) -> String:
     return translate_decimal(length_, length_format) + " m"
 
 func get_cube_label_text(cube: int) -> String:
+    return str(get_precision_cube_value(cube))
+
+func get_precision_label() -> String:
+    return "század" if labeling_precision == Precision.TWO_DIGITS else "ezred"
+
+func get_precision_cube_value(cube: int) -> int:
     # data is stored with 3 digits precision, converse only if two digits precision is set
     if labeling_precision == Precision.TWO_DIGITS:
         var integer_part: int = cube / 10
         if cube % 10 >= 5:
             integer_part += 1
-        cube = integer_part
-    return str(cube)
-
-func get_precision_label() -> String:
-    return "század" if labeling_precision == Precision.TWO_DIGITS else "ezred"
+        return integer_part
+    else:
+        return cube
