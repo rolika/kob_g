@@ -5,6 +5,8 @@ const STARTING_DIAMETER: int = 12
 const FLOAT_FMT: String = "%.3f"
 const LENGTH_FMT: String = "%.2f"
 
+enum Precision {TWO_DIGITS = 2, THREE_DIGITS = 3}
+
 var company: String
 var city: String
 var site: String
@@ -20,9 +22,7 @@ func is_valid() -> bool:
 
 func init() -> void:
     assert(length)
-    var cube_data = File_IO.get_cubedata()
-    for cube in cube_data:
-        counter[cube] = 0
+    _reset_counter()
     File_IO.write_session()
 
 func reset_pile() -> void:
@@ -35,6 +35,11 @@ func reset_pile() -> void:
     counter = {}
     index = 0
     timestamp = int(Time.get_unix_time_from_system())
+
+func _reset_counter(type_: String = CurrentPile.type, length_: float = CurrentPile.length) -> void:    
+    var cube_data = File_IO.get_cubedata(type_, length_)
+    for cube in cube_data:
+        counter[cube] = 0
 
 func get_volume(cube: int) -> float:
     return cube * counter[cube] * CUBE_DATA_PRECISION
@@ -78,9 +83,7 @@ func set_session_data(session: Dictionary) -> void:
     type = session.type
     length = session.length
     timestamp = session.timestamp
-    var cube_data = File_IO.get_cubedata(session.type, session.length)
-    for cube in cube_data:
-        counter[cube] = 0
+    _reset_counter(session.type, session.length)
     var i = 0
     for cube in counter:
         counter[cube] = session.kobdata[i]
