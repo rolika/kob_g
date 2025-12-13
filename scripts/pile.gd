@@ -98,9 +98,7 @@ func translate_decimal(num: Variant, fmt: String = THREE_DIGIT_FMT) -> Variant:
         var text = fmt % num
         return text.replace(".", ",")
     elif is_instance_of(num, TYPE_STRING):
-        var precision: float = 10 ** -calculation_precision
-        var tmp: float = float(num.replace(",", "."))
-        return round(tmp / precision) * precision
+        return float(num.replace(",", "."))
     return -1
 
 func get_total_volume_formatted() -> String:
