@@ -1,7 +1,14 @@
 extends Control
 
 var diameter: int  # diamater is represented in centimetres
-var cube: int  # the statistical cube data as an integer (precision is hardcoded in pile.gd)
+var cube: int  # the statistical cube data as an integer
+
+@onready var decrease_button: Button = $HBoxContainer/DecreaseButton
+@onready var counter_label: Label = $HBoxContainer/CounterGrid/CounterLabel
+@onready var diameter_label: Label = $HBoxContainer/DiameterVBox/DiameterLabel
+@onready var cube_label: Label = $HBoxContainer/CubeVBox/CubeLabel
+@onready var volume_label: Label = $HBoxContainer/CounterGrid/VolumeLabel
+@onready var precision_label: Label = $HBoxContainer/CubeVBox/HBoxContainer/PrecisionLabel
 
 func _ready() -> void:
     set_cube_data()
@@ -19,12 +26,6 @@ func _on_increase_button_pressed() -> void:
     File_IO.update_session()
 
 func _process(_delta: float) -> void:
-    var decrease_button: Button = $HBoxContainer/DecreaseButton
-    var counter_label: Label = $HBoxContainer/CounterGrid/CounterLabel
-    var diameter_label: Label = $HBoxContainer/DiameterVBox/DiameterLabel
-    var cube_label: Label = $HBoxContainer/CubeVBox/CubeLabel
-    var volume_label: Label = $HBoxContainer/CounterGrid/VolumeLabel
-    var precision_label: Label = $HBoxContainer/CubeVBox/HBoxContainer/PrecisionLabel
     if CurrentPile.counter[cube] > 0:
         decrease_button.disabled = false
     else:
