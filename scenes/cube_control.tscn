@@ -99,9 +99,16 @@ text = "3676"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="HBoxContainer/CubeVBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CubeVBox"]
 layout_mode = 2
-text = "század m3"
+alignment = 1
+
+[node name="PrecisionLabel" type="Label" parent="HBoxContainer/CubeVBox/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/CubeVBox/HBoxContainer"]
+layout_mode = 2
+text = "m3"
 horizontal_alignment = 1
 
 [node name="IncreaseButton" type="Button" parent="HBoxContainer"]

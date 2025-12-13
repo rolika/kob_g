@@ -1,11 +1,11 @@
 class_name Pile extends Node
 
-const CUBE_DATA_PRECISION: float = 0.001
 const STARTING_DIAMETER: int = 12
-const FLOAT_FMT: String = "%.3f"
-const LENGTH_FMT: String = "%.2f"
+const STORED_DATA_PRECISION: float = 0.001
 
 enum Precision {TWO_DIGITS = 2, THREE_DIGITS = 3}
+const TWO_DIGIT_FMT: String = "%.2f"
+const THREE_DIGIT_FMT: String = "%.3f"
 
 var company: String
 var city: String
@@ -16,6 +16,11 @@ var length: float
 var counter: Dictionary[int, int]
 var index: int = 0
 var timestamp: int = int(Time.get_unix_time_from_system())
+var labeling_precision: int = Precision.THREE_DIGITS
+var calculation_precision: int = Precision.THREE_DIGITS
+var labeling_format: String = TWO_DIGIT_FMT
+var volume_format: String = THREE_DIGIT_FMT
+var length_format: String = TWO_DIGIT_FMT
 
 func is_valid() -> bool:
     return not (company.is_empty() or city.is_empty() or site.is_empty() or person.is_empty())
@@ -42,7 +47,7 @@ func _reset_counter(type_: String = CurrentPile.type, length_: float = CurrentPi
         counter[cube] = 0
 
 func get_volume(cube: int) -> float:
-    return cube * counter[cube] * CUBE_DATA_PRECISION
+    return cube * counter[cube] * STORED_DATA_PRECISION
 
 func get_total_volume() -> float:
     var total_volume = 0.0
@@ -89,7 +94,7 @@ func set_session_data(session: Dictionary) -> void:
         counter[cube] = session.kobdata[i]
         i += 1
 
-func translate_decimal(num: Variant, fmt: String = FLOAT_FMT) -> Variant:
+func translate_decimal(num: Variant, fmt: String = THREE_DIGIT_FMT) -> Variant:
     if is_instance_of(num, TYPE_FLOAT):
         var text = fmt % num
         return text.replace(".", ",")
@@ -104,4 +109,16 @@ func get_volume_fmt(cube: int) -> String:
     return translate_decimal(get_volume(cube))
 
 func get_length_fmt(length_: float = length) -> String:
-    return translate_decimal(length_, LENGTH_FMT) + " m"
+    return translate_decimal(length_, length_format) + " m"
+
+func get_cube_label_text(cube: int) -> String:
+    # data is stored with 3 digits precision, converse only if two digits precision is set
+    if labeling_precision == Precision.TWO_DIGITS:
+        var integer_part: int = cube / 10
+        if cube % 10 >= 5:
+            integer_part += 1
+        cube = integer_part
+    return str(cube)
+
+func get_precision_label() -> String:
+    return "század" if labeling_precision == Precision.TWO_DIGITS else "ezred"

@@ -24,14 +24,16 @@ func _process(_delta: float) -> void:
     var diameter_label: Label = $HBoxContainer/DiameterVBox/DiameterLabel
     var cube_label: Label = $HBoxContainer/CubeVBox/CubeLabel
     var volume_label: Label = $HBoxContainer/CounterGrid/VolumeLabel
+    var precision_label: Label = $HBoxContainer/CubeVBox/HBoxContainer/PrecisionLabel
     if CurrentPile.counter[cube] > 0:
         decrease_button.disabled = false
     else:
         decrease_button.disabled = true
     counter_label.text = str(CurrentPile.counter[cube])
     diameter_label.text = str(diameter)
-    cube_label.text = str(int(round(cube / 10.0)))
+    cube_label.text = CurrentPile.get_cube_label_text(cube)
     volume_label.text = CurrentPile.get_volume_fmt(cube)
+    precision_label.text = CurrentPile.get_precision_label()
 
 func set_cube_data(diameter_: int = 20, cube_: int = 15) -> void:
     diameter = diameter_
