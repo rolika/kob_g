@@ -14,7 +14,7 @@ func init(new_subject: int = LABELING) -> void:
         two_digit_check_button.button_pressed = true
     else:
         label.text = "Válaszd ki a számítás pontosságát:"
-        three_digit_check_button.button_pressed = true
+        two_digit_check_button.button_pressed = true
 
 func _on_two_digit_check_button_toggled(toggled_on: bool) -> void:
     if toggled_on:
