@@ -4,7 +4,9 @@ signal check
 
 func _ready() -> void:
     $VBoxContainer/CompanyLineEdit.call_deferred("grab_focus")
-
+    $VBoxContainer/PrecisionLabeling.init()
+    $VBoxContainer/PrecisionCalculation.init(PrecisionHBox.CALCULATION)
+    
 func _on_company_line_edit_text_changed(new_text: String) -> void:
     CurrentPile.company = new_text
     check.emit()

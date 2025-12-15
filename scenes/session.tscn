@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2ac32l5q465y"]
+[gd_scene load_steps=5 format=3 uid="uid://b2ac32l5q465y"]
 
 [ext_resource type="Script" uid="uid://c8l31np11m5oh" path="res://scripts/session.gd" id="1_wfdo7"]
+[ext_resource type="PackedScene" uid="uid://dbvrvc1tb8tc" path="res://scenes/precision_h_box.tscn" id="2_w6gu6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wfdo7"]
 
@@ -103,10 +104,16 @@ layout_mode = 2
 theme_override_constants/separation = 32
 theme_override_styles/separator = SubResource("StyleBoxLine_wfdo7")
 
+[node name="PrecisionLabeling" parent="VBoxContainer" instance=ExtResource("2_w6gu6")]
+layout_mode = 2
+
 [node name="HSeparator7" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 32
 theme_override_styles/separator = SubResource("StyleBoxLine_wfdo7")
+
+[node name="PrecisionCalculation" parent="VBoxContainer" instance=ExtResource("2_w6gu6")]
+layout_mode = 2
 
 [connection signal="text_changed" from="VBoxContainer/CompanyLineEdit" to="." method="_on_company_line_edit_text_changed"]
 [connection signal="text_submitted" from="VBoxContainer/CompanyLineEdit" to="." method="_on_company_line_edit_text_submitted"]

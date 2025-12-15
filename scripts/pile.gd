@@ -45,6 +45,10 @@ func _reset_counter(type_: String = CurrentPile.type, length_: float = CurrentPi
     for cube in cube_data:
         counter[cube] = 0
 
+func update_precision() -> void:
+    data_precision = 0.01 if calculation_precision == Precision.TWO_DIGITS else 0.001
+    volume_format = TWO_DIGIT_FMT if calculation_precision == Precision.TWO_DIGITS else THREE_DIGIT_FMT
+
 func get_volume(cube: int) -> float:
     return get_precision_cube_value(cube, calculation_precision) * counter[cube] * data_precision
 
