@@ -3,7 +3,6 @@ extends Node
 signal check
 
 func _ready() -> void:
-    $VBoxContainer/CompanyLineEdit.call_deferred("grab_focus")
     $VBoxContainer/PrecisionLabeling.init(PrecisionHBox.LABELING)
     $VBoxContainer/PrecisionCalculation.init(PrecisionHBox.CALCULATION)
     
