@@ -13,13 +13,13 @@ var person: String
 var type: String
 var length: float
 var counter: Dictionary[int, int]
-var index: int = 0
 var timestamp: int = int(Time.get_unix_time_from_system())
 var labeling_precision: int = Precision.TWO_DIGITS
 var calculation_precision: int = Precision.TWO_DIGITS
 var data_precision: float = 0.01 if calculation_precision == Precision.TWO_DIGITS else 0.001
 var volume_format: String = TWO_DIGIT_FMT if calculation_precision == Precision.TWO_DIGITS else THREE_DIGIT_FMT
 var length_format: String = TWO_DIGIT_FMT
+var former_timestamp: int = 0
 
 func is_valid() -> bool:
     return not (company.is_empty() or city.is_empty() or site.is_empty() or person.is_empty())
@@ -37,7 +37,6 @@ func reset_pile() -> void:
     type = ""
     length = 0.0
     counter = {}
-    index = 0
     timestamp = int(Time.get_unix_time_from_system())
 
 func _reset_counter(type_: String = CurrentPile.type, length_: float = CurrentPile.length) -> void:    
@@ -60,10 +59,12 @@ func get_total_volume() -> float:
 
 func increment(cube: int) -> void:
     counter[cube] += 1
+    former_timestamp = timestamp
     timestamp = int(Time.get_unix_time_from_system())
 
 func decrement(cube: int) -> void:
     counter[cube] -= 1
+    former_timestamp = timestamp
     timestamp = int(Time.get_unix_time_from_system())
 
 func get_session_data() -> Dictionary:
@@ -83,7 +84,6 @@ func get_session_data() -> Dictionary:
     return session
 
 func set_session_data(session: Dictionary) -> void:
-    index = session.index
     company = session.company
     city = session.city
     site = session.site

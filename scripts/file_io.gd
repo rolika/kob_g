@@ -2,7 +2,7 @@ extends Node
 
 const DATAFILE: String = "res://data/kobozo.txt"
 const PILEFOLDER: String = "user://kob"
-const KOBFILE_FMT: String = "pile_%03d.kob"
+const KOBFILE_FMT: String = "%d.kob"
 
 func _init(datafile: String = DATAFILE, pilefolder: String = PILEFOLDER) -> void:
     if not FileAccess.file_exists(datafile):
@@ -42,7 +42,8 @@ func get_woodlengths(file_path: String = DATAFILE) -> Array[float]:
                 break
             var index_of_colon = line.find(":")
             var length = line.left(index_of_colon + 1)
-            result.append(length.to_float())            
+            result.append(length.to_float())        
+        file.close()                        
     return result
 
 func get_cubedata(type: String = CurrentPile.type, length: float = CurrentPile.length, file_path: String = DATAFILE) -> Array[int]:
@@ -64,24 +65,18 @@ func get_cubedata(type: String = CurrentPile.type, length: float = CurrentPile.l
         var cubedata = line.split(":")[1]
         for number in cubedata.strip_edges().split(" "):
             result.append(int(number))            
+        file.close()                    
     return result
-
-func _get_session_count(pilefolder: String = PILEFOLDER) -> int:
-    # since the sessions come sorted on newest first, the first element has the highest index
-    var sessions: Array[Dictionary] = get_sessions(pilefolder)
-    var new_index: int = 1 if sessions.size() < 1 else clampi(sessions[0].index + 1, 0, 998)
-    return new_index
 
 func write_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:
     assert(DirAccess.dir_exists_absolute(pilefolder))
-    if CurrentPile.index == 0:
-        CurrentPile.index = _get_session_count()
     update_session(pilefolder, kobfile_fmt)
 
 func update_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:
-    assert(CurrentPile.index != 0)
-    var filename: String = pilefolder.path_join(kobfile_fmt % CurrentPile.index)
-    var file = FileAccess.open(filename, FileAccess.WRITE)
+    var old_filename: String = pilefolder.path_join(kobfile_fmt % CurrentPile.former_timestamp)
+    var new_filename: String = pilefolder.path_join(kobfile_fmt % CurrentPile.timestamp)
+    DirAccess.rename_absolute(old_filename, new_filename)
+    var file = FileAccess.open(new_filename, FileAccess.WRITE)
     if file:
         file.store_var(CurrentPile.get_session_data())
     else:
@@ -93,17 +88,13 @@ func get_sessions(pilefolder: String = PILEFOLDER) -> Array[Dictionary]:
     assert(DirAccess.dir_exists_absolute(pilefolder))
     var sessions: Array[Dictionary]
     for filename in DirAccess.get_files_at(pilefolder):
-        var num: String = filename.split("_")[1]  # filename-format: KOBFILE_FMT
-        num = num.split(".")[0]
-        var index: int = int(num)
         var file = FileAccess.open(pilefolder.path_join(filename), FileAccess.READ)
         sessions.append(file.get_var())
-        sessions[-1]["index"] = index
         file.close()    
     if sessions.size() > 1:
         sessions.sort_custom(func(s1, s2): return s1.timestamp > s2.timestamp)  # newer come first
     return sessions
 
-func delete_session(index: int, pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:      
+func delete_session(timestamp: int, pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:      
     assert(DirAccess.dir_exists_absolute(pilefolder))
-    DirAccess.remove_absolute(pilefolder.path_join(kobfile_fmt % index))
+    DirAccess.remove_absolute(pilefolder.path_join(kobfile_fmt % timestamp))
