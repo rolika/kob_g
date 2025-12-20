@@ -123,7 +123,7 @@ func get_precision_label() -> String:
 func get_precision_cube_value(cube: int, precision: int) -> int:
     # data is stored with 3 digits precision, converse only if 2 digits precision is set
     if precision == Precision.TWO_DIGITS:
-        var integer_part: int = cube / 10
+        var integer_part: int = int(cube / 10.0)
         if cube % 10 >= 5:
             integer_part += 1
         return integer_part
