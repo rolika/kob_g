@@ -3,7 +3,7 @@ extends VBoxContainer
 const CUBE_CONTROL = preload("res://scenes/cube_control.tscn")
 
 func _ready() -> void:
-    File_IO.update_session()
+    File_IO.write_session()
     var index = 0
     for cube in CurrentPile.counter:
         var cube_control = CUBE_CONTROL.instantiate()

@@ -14,14 +14,14 @@ func _ready() -> void:
         restore_control.populate(pile)    
         $VBoxContainer.add_child(restore_control)
         restore_control.continue_session.connect(_on_continue_session_button_pressed.bind(session))
-        restore_control.remove_session.connect(_on_remove_session_button_pressed.bind(session.index))
+        restore_control.remove_session.connect(_on_remove_session_button_pressed.bind(session.timestamp_for_filename))
 
 func _on_continue_session_button_pressed(session: Dictionary) -> void:
     restore_session.emit(session)
 
-func _on_remove_session_button_pressed(index: int) -> void:
+func _on_remove_session_button_pressed(timestamp: int) -> void:
     for child in $VBoxContainer.get_children():
-        if index == child.get_node("HBoxContainer/PileCard").pile.index:
+        if timestamp == child.get_node("HBoxContainer/PileCard").pile.timestamp_for_filename:
             var dialog = CONFIRM_DIALOG.instantiate()
             dialog.confirmed.connect(_remove_confirmed.bind(child))
             add_child(dialog)
@@ -31,4 +31,4 @@ func _on_remove_session_button_pressed(index: int) -> void:
 
 func _remove_confirmed(child: Node) -> void:
     child.call_deferred("free")
-    File_IO.delete_session(child.get_node("HBoxContainer/PileCard").pile.index)
+    File_IO.delete_session(child.get_node("HBoxContainer/PileCard").pile.timestamp_for_filename)

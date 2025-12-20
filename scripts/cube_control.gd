@@ -17,13 +17,13 @@ func _on_decrease_button_pressed() -> void:
     CurrentPile.decrement(cube)
     $SubtractAudio.play()
     Input.vibrate_handheld(200)
-    File_IO.update_session()
+    File_IO.write_session()
 
 func _on_increase_button_pressed() -> void:    
     CurrentPile.increment(cube)
     $AddAudio.play()
     Input.vibrate_handheld(200)
-    File_IO.update_session()
+    File_IO.write_session()
 
 func _process(_delta: float) -> void:
     if CurrentPile.counter[cube] > 0:
