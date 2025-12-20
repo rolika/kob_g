@@ -13,13 +13,13 @@ var person: String
 var type: String
 var length: float
 var counter: Dictionary[int, int]
-var timestamp: int = int(Time.get_unix_time_from_system())
+var timestamp: int
 var labeling_precision: int = Precision.TWO_DIGITS
 var calculation_precision: int = Precision.TWO_DIGITS
 var data_precision: float = 0.01 if calculation_precision == Precision.TWO_DIGITS else 0.001
 var volume_format: String = TWO_DIGIT_FMT if calculation_precision == Precision.TWO_DIGITS else THREE_DIGIT_FMT
 var length_format: String = TWO_DIGIT_FMT
-var former_timestamp: int = 0
+var timestamp_for_filename: int
 
 func is_valid() -> bool:
     return not (company.is_empty() or city.is_empty() or site.is_empty() or person.is_empty())
@@ -27,6 +27,7 @@ func is_valid() -> bool:
 func init() -> void:
     assert(length)
     _reset_counter()
+    timestamp_for_filename = 0
     File_IO.write_session()
 
 func reset_pile() -> void:
@@ -37,7 +38,6 @@ func reset_pile() -> void:
     type = ""
     length = 0.0
     counter = {}
-    timestamp = int(Time.get_unix_time_from_system())
 
 func _reset_counter(type_: String = CurrentPile.type, length_: float = CurrentPile.length) -> void:    
     var cube_data = File_IO.get_cubedata(type_, length_)
@@ -59,12 +59,10 @@ func get_total_volume() -> float:
 
 func increment(cube: int) -> void:
     counter[cube] += 1
-    former_timestamp = timestamp
     timestamp = int(Time.get_unix_time_from_system())
 
 func decrement(cube: int) -> void:
     counter[cube] -= 1
-    former_timestamp = timestamp
     timestamp = int(Time.get_unix_time_from_system())
 
 func get_session_data() -> Dictionary:
@@ -79,7 +77,8 @@ func get_session_data() -> Dictionary:
         "type": type,
         "length": length,
         "kobdata": kobdata,
-        "timestamp": timestamp
+        "timestamp": timestamp,
+        "timestamp_for_filename": timestamp_for_filename
     }
     return session
 
@@ -91,6 +90,7 @@ func set_session_data(session: Dictionary) -> void:
     type = session.type
     length = session.length
     timestamp = session.timestamp
+    timestamp_for_filename = session.timestamp_for_filename
     _reset_counter(session.type, session.length)
     var i = 0
     for cube in counter:

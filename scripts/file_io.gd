@@ -70,10 +70,10 @@ func get_cubedata(type: String = CurrentPile.type, length: float = CurrentPile.l
 
 func write_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:
     assert(DirAccess.dir_exists_absolute(pilefolder))
-    var old_filename: String = pilefolder.path_join(kobfile_fmt % CurrentPile.former_timestamp)
-    var new_filename: String = pilefolder.path_join(kobfile_fmt % CurrentPile.timestamp)
-    DirAccess.rename_absolute(old_filename, new_filename)
-    var file = FileAccess.open(new_filename, FileAccess.WRITE)
+    if CurrentPile.timestamp_for_filename == 0:
+        CurrentPile.timestamp_for_filename = int(Time.get_unix_time_from_system())
+    var filename: String = pilefolder.path_join(kobfile_fmt % CurrentPile.timestamp_for_filename)
+    var file = FileAccess.open(filename, FileAccess.WRITE)
     if file:
         file.store_var(CurrentPile.get_session_data())
     else:
