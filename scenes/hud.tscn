@@ -77,7 +77,7 @@ layout_mode = 2
 icon = ExtResource("1_oo0fn")
 icon_alignment = 1
 
-[node name="HomeButton" type="Button" parent="VBoxContainer/FooterContainer"]
+[node name="ShareButton" type="Button" parent="VBoxContainer/FooterContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_uo2fv")
@@ -87,7 +87,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_5pdws")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_0i1j5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_hd3ao")
 icon = ExtResource("3_5ysmq")
-flat = true
 icon_alignment = 1
 
 [node name="ForwardButton" type="Button" parent="VBoxContainer/FooterContainer"]
@@ -99,5 +98,5 @@ icon_alignment = 1
 [connection signal="pressed" from="VBoxContainer/HeaderContainer/BackwardButton" to="." method="_on_backward_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HeaderContainer/ForwardButton" to="." method="_on_forward_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/FooterContainer/BackwardButton" to="." method="_on_backward_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/FooterContainer/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/FooterContainer/ShareButton" to="." method="_on_share_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/FooterContainer/ForwardButton" to="." method="_on_forward_button_pressed"]

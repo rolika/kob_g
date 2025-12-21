@@ -76,6 +76,9 @@ func _on_cube_done() -> void:
     hud.enable_all()
     hud.forward.connect(_ready)
     hud.backward.connect(_ready)
+    hud.share.connect(_on_report_share)
+
+func _on_report_share() -> void:
     var image: Image = await scene.get_report_as_image()
     File_IO.save_report(image)
 
