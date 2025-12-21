@@ -76,6 +76,8 @@ func _on_cube_done() -> void:
     hud.enable_all()
     hud.forward.connect(_ready)
     hud.backward.connect(_ready)
+    var image: Image = await scene.get_node("Report").get_report_as_image()
+    File_IO.save_report(image)
 
 func _on_continue_session() -> void:
     scene = WORKSPACE_SCENE.instantiate()

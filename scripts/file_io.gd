@@ -3,6 +3,9 @@ extends Node
 const DATAFILE: String = "res://data/kobozo.txt"
 const PILEFOLDER: String = "user://kob"
 const KOBFILE_FMT: String = "%d.kob"
+const IMAGEFILE_FMT: String = "%s_%s_%s_%d.png"
+
+var download_folder: String = OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)
 
 func _init(datafile: String = DATAFILE, pilefolder: String = PILEFOLDER) -> void:
     if not FileAccess.file_exists(datafile):
@@ -95,3 +98,9 @@ func get_sessions(pilefolder: String = PILEFOLDER) -> Array[Dictionary]:
 func delete_session(timestamp: int, pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:      
     assert(DirAccess.dir_exists_absolute(pilefolder))
     DirAccess.remove_absolute(pilefolder.path_join(kobfile_fmt % timestamp))
+    
+func save_report(image: Image, imagefile_fmt: String = IMAGEFILE_FMT, folder: String = download_folder) -> void:
+    var filename: String = imagefile_fmt % [CurrentPile.company, CurrentPile.site, CurrentPile.type, CurrentPile.get_length_dm()]
+    filename = filename.replace(" ", "_")
+    var path: String = folder.path_join(filename)
+    image.save_png(path)

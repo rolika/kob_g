@@ -135,3 +135,6 @@ func get_single_volume(cube: int) -> String:
 
 func get_volume_for(cube: int) -> String:
     return translate_decimal(get_volume(cube), volume_format)
+
+func get_length_dm() -> int:
+    return int(length * 10)

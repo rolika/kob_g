@@ -54,3 +54,14 @@ func _ready() -> void:
     var date_fmt = DATE_FMT % [today.year, today.month, today.day]
     $DateLabel.text = DATE % [CurrentPile.city, date_fmt]
     $PersonLabel.text = CurrentPile.person
+
+func get_report_as_image() -> Image:
+    var image_viewport: SubViewport = SubViewport.new()
+    add_child(image_viewport)
+    image_viewport.size = self.size
+    image_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+    image_viewport.add_child(self.duplicate())
+    await RenderingServer.frame_post_draw
+    var image: Image = image_viewport.get_texture().get_image()
+    image_viewport.queue_free()
+    return image
