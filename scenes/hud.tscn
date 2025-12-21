@@ -1,23 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cumltahf0qpyi"]
+[gd_scene load_steps=8 format=3 uid="uid://cumltahf0qpyi"]
 
 [ext_resource type="Script" uid="uid://do1juptun06q8" path="res://scripts/hud.gd" id="1_6fi6k"]
 [ext_resource type="Texture2D" uid="uid://bgvnxgaceb36u" path="res://assets/icons/backward_icon.png" id="1_oo0fn"]
 [ext_resource type="Texture2D" uid="uid://bjgcj1ja71uec" path="res://assets/icons/forward_icon.png" id="2_5ysmq"]
-[ext_resource type="Texture2D" uid="uid://o7vhkl1djkdl" path="res://assets/icons/wevik_icon.png" id="3_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://cw65akmhmae11" path="res://assets/icons/share_icon.png" id="4_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://bs4qnh1nsrnwk" path="res://assets/icons/backward_icon_big.png" id="4_047uy"]
+[ext_resource type="Texture2D" uid="uid://dofpwxuvim7ax" path="res://assets/icons/forward_icon_big.png" id="6_5pdws"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6fi6k"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uo2fv"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_047uy"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ysmq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pdws"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0i1j5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hd3ao"]
 
 [node name="Hud" type="MarginContainer"]
 offset_right = 720.0
@@ -74,25 +64,21 @@ layout_mode = 2
 [node name="BackwardButton" type="Button" parent="VBoxContainer/FooterContainer"]
 custom_minimum_size = Vector2(123, 123)
 layout_mode = 2
-icon = ExtResource("1_oo0fn")
+size_flags_horizontal = 3
+icon = ExtResource("4_047uy")
 icon_alignment = 1
 
 [node name="ShareButton" type="Button" parent="VBoxContainer/FooterContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/focus = SubResource("StyleBoxEmpty_uo2fv")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_047uy")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_5ysmq")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_5pdws")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_0i1j5")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_hd3ao")
-icon = ExtResource("3_5ysmq")
+icon = ExtResource("4_6fi6k")
 icon_alignment = 1
 
 [node name="ForwardButton" type="Button" parent="VBoxContainer/FooterContainer"]
 custom_minimum_size = Vector2(123, 123)
 layout_mode = 2
-icon = ExtResource("2_5ysmq")
+size_flags_horizontal = 3
+icon = ExtResource("6_5pdws")
 icon_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/HeaderContainer/BackwardButton" to="." method="_on_backward_button_pressed"]
