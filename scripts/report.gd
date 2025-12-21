@@ -1,4 +1,4 @@
-extends ColorRect
+extends Container
 
 const DATE_FMT: String = "%s.%s.%s."
 const DATE: String = "%s, %s"
@@ -31,10 +31,10 @@ func _ready() -> void:
             quantity.add_theme_color_override("font_color", Color.GRAY)
             singlevolume.add_theme_color_override("font_color", Color.GRAY)
             volume.add_theme_color_override("font_color", Color.GRAY)
-        $ReportGrid.add_child(diameter)
-        $ReportGrid.add_child(quantity)
-        $ReportGrid.add_child(singlevolume)
-        $ReportGrid.add_child(volume)
+        $Report/ReportGrid.add_child(diameter)
+        $Report/ReportGrid.add_child(quantity)
+        $Report/ReportGrid.add_child(singlevolume)
+        $Report/ReportGrid.add_child(volume)
         index += 1
     var volume_label: Label = Label.new()
     volume_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
@@ -46,21 +46,21 @@ func _ready() -> void:
     volume_value.text = CurrentPile.get_total_volume_formatted()
     spacer1.text = ""
     spacer2.text = ""
-    $ReportGrid.add_child(volume_label)
-    $ReportGrid.add_child(spacer1)
-    $ReportGrid.add_child(spacer2)
-    $ReportGrid.add_child(volume_value)
+    $Report/ReportGrid.add_child(volume_label)
+    $Report/ReportGrid.add_child(spacer1)
+    $Report/ReportGrid.add_child(spacer2)
+    $Report/ReportGrid.add_child(volume_value)
     var today = Time.get_date_dict_from_system()
     var date_fmt = DATE_FMT % [today.year, today.month, today.day]
-    $DateLabel.text = DATE % [CurrentPile.city, date_fmt]
-    $PersonLabel.text = CurrentPile.person
+    $Report/DateLabel.text = DATE % [CurrentPile.city, date_fmt]
+    $Report/PersonLabel.text = CurrentPile.person
 
 func get_report_as_image() -> Image:
     var image_viewport: SubViewport = SubViewport.new()
     add_child(image_viewport)
-    image_viewport.size = self.size
+    image_viewport.size = $Report.size
     image_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
-    image_viewport.add_child(self.duplicate())
+    image_viewport.add_child($Report.duplicate())
     await RenderingServer.frame_post_draw
     var image: Image = image_viewport.get_texture().get_image()
     image_viewport.queue_free()
