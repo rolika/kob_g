@@ -5,6 +5,7 @@ signal check
 func _ready() -> void:
     $VBoxContainer/PrecisionLabeling.init(PrecisionHBox.LABELING)
     $VBoxContainer/PrecisionCalculation.init(PrecisionHBox.CALCULATION)
+    $VBoxContainer/CompanyLineEdit.call_deferred("grab_focus")
     
 func _on_company_line_edit_text_changed(new_text: String) -> void:
     CurrentPile.company = new_text
@@ -39,7 +40,6 @@ func _on_person_line_edit_text_changed(new_text: String) -> void:
 
 func _on_person_line_edit_text_submitted(new_text: String) -> void:
     CurrentPile.person = new_text
-    $SubmitButton.call_deferred("grab_focus")
 
 func set_session() -> void:
     $VBoxContainer/CompanyLineEdit.clear()
