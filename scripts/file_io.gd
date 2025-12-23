@@ -99,8 +99,9 @@ func delete_session(timestamp: int, pilefolder: String = PILEFOLDER, kobfile_fmt
     assert(DirAccess.dir_exists_absolute(pilefolder))
     DirAccess.remove_absolute(pilefolder.path_join(kobfile_fmt % timestamp))
     
-func save_report(image: Image, imagefile_fmt: String = IMAGEFILE_FMT, folder: String = download_folder) -> void:
+func save_report(image: Image, folder: String = download_folder, imagefile_fmt: String = IMAGEFILE_FMT) -> String:
     var filename: String = imagefile_fmt % [CurrentPile.company, CurrentPile.site, CurrentPile.type, CurrentPile.get_length_dm()]
     filename = filename.replace(" ", "_")
     var path: String = folder.path_join(filename)
     image.save_png(path)
+    return path

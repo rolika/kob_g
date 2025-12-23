@@ -80,7 +80,9 @@ func _on_cube_done() -> void:
 
 func _on_report_share() -> void:
     var image: Image = await scene.get_report_as_image()
-    File_IO.save_report(image)
+    var message: String = File_IO.save_report(image)
+    OS.alert(message, "Mentve ide:")
+    DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
 func _on_continue_session() -> void:
     scene = WORKSPACE_SCENE.instantiate()
