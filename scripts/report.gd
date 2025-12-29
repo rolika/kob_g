@@ -42,14 +42,15 @@ func _ready() -> void:
     volume_value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
     var total_quantity_value: Label = Label.new()
     total_quantity_value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-    var spacer: Label = Label.new()
+    var quantity_label: Label = Label.new()
+    quantity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
     total_label.text = "összesen:"
     volume_value.text = CurrentPile.get_total_volume_formatted()
-    total_quantity_value.text = CurrentPile.get_total_quantity_formatted()
-    spacer.text = ""
+    total_quantity_value.text = str(CurrentPile.get_total_quantity())
+    quantity_label.text = " db"
     $Report/ReportGrid.add_child(total_label)
     $Report/ReportGrid.add_child(total_quantity_value)
-    $Report/ReportGrid.add_child(spacer)
+    $Report/ReportGrid.add_child(quantity_label)
     $Report/ReportGrid.add_child(volume_value)
     var today = Time.get_date_dict_from_system()
     var date_fmt = DATE_FMT % [today.year, today.month, today.day]

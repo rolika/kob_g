@@ -139,11 +139,8 @@ func get_volume_for(cube: int) -> String:
 func get_length_dm() -> int:
     return int(length * 10)
 
-func _get_total_quantity() -> int:
+func get_total_quantity() -> int:
     var total_pieces = 0
     for count in counter.values():
         total_pieces += count
     return total_pieces
-
-func get_total_quantity_formatted() -> String:
-    return str(_get_total_quantity()) + " db"
