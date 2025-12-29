@@ -36,19 +36,20 @@ func _ready() -> void:
         $Report/ReportGrid.add_child(singlevolume)
         $Report/ReportGrid.add_child(volume)
         index += 1
-    var volume_label: Label = Label.new()
-    volume_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+    var total_label: Label = Label.new()
+    total_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
     var volume_value: Label = Label.new()
     volume_value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-    var spacer1: Label = Label.new()
-    var spacer2: Label = Label.new()
-    volume_label.text = "összesen:"
+    var total_quantity_value: Label = Label.new()
+    total_quantity_value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+    var spacer: Label = Label.new()
+    total_label.text = "összesen:"
     volume_value.text = CurrentPile.get_total_volume_formatted()
-    spacer1.text = ""
-    spacer2.text = ""
-    $Report/ReportGrid.add_child(volume_label)
-    $Report/ReportGrid.add_child(spacer1)
-    $Report/ReportGrid.add_child(spacer2)
+    total_quantity_value.text = CurrentPile.get_total_quantity_formatted()
+    spacer.text = ""
+    $Report/ReportGrid.add_child(total_label)
+    $Report/ReportGrid.add_child(total_quantity_value)
+    $Report/ReportGrid.add_child(spacer)
     $Report/ReportGrid.add_child(volume_value)
     var today = Time.get_date_dict_from_system()
     var date_fmt = DATE_FMT % [today.year, today.month, today.day]
