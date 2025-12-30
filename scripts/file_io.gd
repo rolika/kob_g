@@ -89,7 +89,12 @@ func get_sessions(pilefolder: String = PILEFOLDER) -> Array[Dictionary]:
     var sessions: Array[Dictionary]
     for filename in DirAccess.get_files_at(pilefolder):
         var file = FileAccess.open(pilefolder.path_join(filename), FileAccess.READ)
-        sessions.append(file.get_var())
+        var session: Dictionary = file.get_var()
+        var cubedata: Array = get_cubedata(session["type"], session["length"])
+        if session.kobdata.size() == cubedata.size():
+            sessions.append(session)
+        else:
+            print("A " + filename + " nevű köbözés adatai nem tölthetők be.")
         file.close()    
     if sessions.size() > 1:
         sessions.sort_custom(func(s1, s2): return s1.timestamp > s2.timestamp)  # newer come first
