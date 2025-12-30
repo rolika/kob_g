@@ -1,20 +1,21 @@
 extends Node
 
-const DATAFILE: String = "res://data/kobozo.txt"
+const DATAFILE: String = "user://kobozo.txt"
 const PILEFOLDER: String = "user://kob"
 const KOBFILE_FMT: String = "%d.kob"
 const IMAGEFILE_FMT: String = "%s_%s_%s_%d.png"
 
 var download_folder: String = OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)
 
-func _init(datafile: String = DATAFILE, pilefolder: String = PILEFOLDER) -> void:
+func _ready(datafile: String = DATAFILE, pilefolder: String = PILEFOLDER) -> void:
     if not FileAccess.file_exists(datafile):
-        get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+        propagate_notification(NOTIFICATION_WM_GO_BACK_REQUEST)
     if not DirAccess.dir_exists_absolute(pilefolder):
         DirAccess.make_dir_absolute(pilefolder)
 
 func _notification(what: int) -> void:
-    if what == NOTIFICATION_WM_CLOSE_REQUEST:
+    if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+        OS.alert("Nem található a köböző adatfile: kobozo.txt.", "Hiba:")
         get_tree().quit()
 
 func get_woodtypes(file_path: String = DATAFILE) -> Array[String]:
@@ -80,8 +81,7 @@ func write_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFIL
     if file:
         file.store_var(CurrentPile.get_session_data())
     else:
-        pass
-        # TODO: display a modal about the failed file access
+        OS.alert("Valamiért nem sikerült elmenteni...", "Hiba:")
     file.close()
         
 func get_sessions(pilefolder: String = PILEFOLDER) -> Array[Dictionary]:    
