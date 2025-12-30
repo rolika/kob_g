@@ -7,18 +7,18 @@
 [ext_resource type="AudioStream" uid="uid://dmnc5oli2bg1g" path="res://assets/audio/subtract_sound.ogg" id="5_8jasb"]
 
 [node name="CubeControl" type="Control"]
-custom_minimum_size = Vector2(720, 140)
+custom_minimum_size = Vector2(688, 140)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 720.0
+offset_right = 688.0
 offset_bottom = 140.0
 mouse_filter = 2
 script = ExtResource("1_ode8r")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(720, 0)
+custom_minimum_size = Vector2(688, 0)
 layout_mode = 0
-offset_right = 720.0
+offset_right = 688.0
 offset_bottom = 140.0
 
 [node name="DecreaseButton" type="Button" parent="HBoxContainer"]
@@ -99,9 +99,16 @@ text = "3676"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="HBoxContainer/CubeVBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CubeVBox"]
 layout_mode = 2
-text = "század m3"
+alignment = 1
+
+[node name="PrecisionLabel" type="Label" parent="HBoxContainer/CubeVBox/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/CubeVBox/HBoxContainer"]
+layout_mode = 2
+text = "m3"
 horizontal_alignment = 1
 
 [node name="IncreaseButton" type="Button" parent="HBoxContainer"]
@@ -113,9 +120,9 @@ expand_icon = true
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 0
-offset_left = 144.0
+offset_left = 128.0
 offset_top = 140.0
-offset_right = 576.0
+offset_right = 560.0
 offset_bottom = 144.0
 
 [node name="AddAudio" type="AudioStreamPlayer" parent="."]

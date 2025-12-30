@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbvrvc1tb8tc"]
+
+[ext_resource type="Script" uid="uid://dakko663brk22" path="res://scripts/precision_h_box.gd" id="1_ba5o3"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_3485q"]
+
+[node name="PrecisionHBox" type="HBoxContainer"]
+custom_minimum_size = Vector2(688, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 8
+script = ExtResource("1_ba5o3")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(224, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "válassz pontosságot"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TwoDigitCheckButton" type="CheckButton" parent="."]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+button_group = SubResource("ButtonGroup_3485q")
+text = "század
+(két izedes)"
+alignment = 1
+
+[node name="ThreeDigitCheckButton" type="CheckButton" parent="."]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+button_group = SubResource("ButtonGroup_3485q")
+text = "ezred
+(három tizedes)"
+alignment = 1
+
+[connection signal="toggled" from="TwoDigitCheckButton" to="." method="_on_two_digit_check_button_toggled"]
+[connection signal="toggled" from="ThreeDigitCheckButton" to="." method="_on_three_digit_check_button_toggled"]

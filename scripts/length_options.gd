@@ -1,4 +1,4 @@
-extends Node2D
+extends ScrollContainer
 
 const ICON: CompressedTexture2D = preload("res://assets/icons/length_icon.png")
 signal length_selected(length: float)
@@ -6,7 +6,7 @@ signal length_selected(length: float)
 func _ready() -> void:
     for woodlength in File_IO.get_woodlengths():
         var button = Button.new()
-        button.text = CurrentPile.get_length_fmt(woodlength)
+        button.text = CurrentPile.get_length_formatted(woodlength)
         button.icon = ICON
         button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
         button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -14,7 +14,7 @@ func _ready() -> void:
         button.expand_icon = true
         button.mouse_filter = Control.MOUSE_FILTER_PASS
         button.pressed.connect(_button_pressed.bind(button))
-        $ScrollContainer/VBoxContainer.add_child(button)
+        $VBoxContainer.add_child(button)
 
 func _button_pressed(button: Button) -> void:
     var text: String = button.text.split(" ")[0]

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d3sc887yva2q7" path="res://scripts/pile_head.gd" id="1_mr2jj"]
 
 [node name="PileHead" type="Control"]
+custom_minimum_size = Vector2(688, 91)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -10,10 +11,9 @@ offset_bottom = 40.0
 script = ExtResource("1_mr2jj")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(656, 0)
+custom_minimum_size = Vector2(656, 91)
 layout_mode = 0
-offset_left = 24.0
-offset_right = 698.0
+offset_right = 674.0
 offset_bottom = 91.0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]

@@ -1,4 +1,4 @@
-extends Node2D
+extends ScrollContainer
 
 const ICON: CompressedTexture2D = preload("res://assets/icons/tree_icon.png")
 const PINE_ICON: CompressedTexture2D = preload("res://assets/icons/pine_icon.png")
@@ -15,10 +15,9 @@ func _ready() -> void:
         button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
         button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
         button.custom_minimum_size = Vector2(240, 200)
-        button.expand_icon = true
         button.mouse_filter = Control.MOUSE_FILTER_PASS
         button.pressed.connect(_button_pressed.bind(button))
-        $ScrollContainer/VBoxContainer.add_child(button)
+        $VBoxContainer.add_child(button)
 
 func _button_pressed(button: Button) -> void:
     type_selected.emit(button.text)

@@ -2,7 +2,10 @@ extends Node
 
 const DATAFILE: String = "res://data/kobozo.txt"
 const PILEFOLDER: String = "user://kob"
-const KOBFILE_FMT: String = "pile_%03d.kob"
+const KOBFILE_FMT: String = "%d.kob"
+const IMAGEFILE_FMT: String = "%s_%s_%s_%d.png"
+
+var download_folder: String = OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)
 
 func _init(datafile: String = DATAFILE, pilefolder: String = PILEFOLDER) -> void:
     if not FileAccess.file_exists(datafile):
@@ -42,7 +45,8 @@ func get_woodlengths(file_path: String = DATAFILE) -> Array[float]:
                 break
             var index_of_colon = line.find(":")
             var length = line.left(index_of_colon + 1)
-            result.append(length.to_float())            
+            result.append(length.to_float())        
+        file.close()                        
     return result
 
 func get_cubedata(type: String = CurrentPile.type, length: float = CurrentPile.length, file_path: String = DATAFILE) -> Array[int]:
@@ -64,22 +68,14 @@ func get_cubedata(type: String = CurrentPile.type, length: float = CurrentPile.l
         var cubedata = line.split(":")[1]
         for number in cubedata.strip_edges().split(" "):
             result.append(int(number))            
+        file.close()                    
     return result
-
-func _get_session_count(pilefolder: String = PILEFOLDER) -> int:
-    # since the sessions come sorted on newest first, the first element has the highest index
-    var new_index: int = clampi(get_sessions(pilefolder)[0].index + 1, 0, 998)
-    return new_index
 
 func write_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:
     assert(DirAccess.dir_exists_absolute(pilefolder))
-    if CurrentPile.index == 0:
-        CurrentPile.index = _get_session_count()
-    update_session(pilefolder, kobfile_fmt)
-
-func update_session(pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:
-    assert(CurrentPile.index != 0)
-    var filename: String = pilefolder.path_join(kobfile_fmt % CurrentPile.index)
+    if CurrentPile.timestamp_for_filename == 0:
+        CurrentPile.timestamp_for_filename = int(Time.get_unix_time_from_system())
+    var filename: String = pilefolder.path_join(kobfile_fmt % CurrentPile.timestamp_for_filename)
     var file = FileAccess.open(filename, FileAccess.WRITE)
     if file:
         file.store_var(CurrentPile.get_session_data())
@@ -92,17 +88,25 @@ func get_sessions(pilefolder: String = PILEFOLDER) -> Array[Dictionary]:
     assert(DirAccess.dir_exists_absolute(pilefolder))
     var sessions: Array[Dictionary]
     for filename in DirAccess.get_files_at(pilefolder):
-        var num: String = filename.split("_")[1]  # filename-format: KOBFILE_FMT
-        num = num.split(".")[0]
-        var index: int = int(num)
         var file = FileAccess.open(pilefolder.path_join(filename), FileAccess.READ)
-        sessions.append(file.get_var())
-        sessions[-1]["index"] = index
+        var session: Dictionary = file.get_var()
+        var cubedata: Array = get_cubedata(session["type"], session["length"])
+        if session.kobdata.size() == cubedata.size():
+            sessions.append(session)
+        else:
+            print("A " + filename + " nevű köbözés adatai nem tölthetők be.")
         file.close()    
     if sessions.size() > 1:
         sessions.sort_custom(func(s1, s2): return s1.timestamp > s2.timestamp)  # newer come first
     return sessions
 
-func delete_session(index: int, pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:      
+func delete_session(timestamp: int, pilefolder: String = PILEFOLDER, kobfile_fmt: String = KOBFILE_FMT) -> void:      
     assert(DirAccess.dir_exists_absolute(pilefolder))
-    DirAccess.remove_absolute(pilefolder.path_join(kobfile_fmt % index))
+    DirAccess.remove_absolute(pilefolder.path_join(kobfile_fmt % timestamp))
+    
+func save_report(image: Image, folder: String = download_folder, imagefile_fmt: String = IMAGEFILE_FMT) -> String:
+    var filename: String = imagefile_fmt % [CurrentPile.company, CurrentPile.site, CurrentPile.type, CurrentPile.get_length_dm()]
+    filename = filename.replace(" ", "_")
+    var path: String = folder.path_join(filename)
+    image.save_png(path)
+    return path

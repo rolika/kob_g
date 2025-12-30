@@ -3,39 +3,44 @@
 [ext_resource type="Script" uid="uid://d0y1lwxa0sxg6" path="res://scripts/pile_card.gd" id="1_2mn5y"]
 
 [node name="PileCard" type="Control"]
-custom_minimum_size = Vector2(440, 0)
+custom_minimum_size = Vector2(414, 95)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 440.0
-offset_bottom = 128.0
+size_flags_horizontal = 0
 script = ExtResource("1_2mn5y")
 
 [node name="GridContainer" type="GridContainer" parent="."]
-custom_minimum_size = Vector2(440, 90)
-layout_mode = 0
-offset_top = 30.0
-offset_right = 440.0
-offset_bottom = 120.0
+custom_minimum_size = Vector2(414, 95)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -36.0
+offset_right = 302.0
+offset_bottom = 36.0
+grow_vertical = 2
 theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 6
 columns = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="CompanyLabel" type="Label" parent="GridContainer"]
-custom_minimum_size = Vector2(280, 0)
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Nyirma és Hegyipusztai Ebt."
+text = "Nyirma és Hegyipusztai Erdőbirtkossági Társulat"
 vertical_alignment = 2
 autowrap_mode = 3
 
 [node name="CityLabel" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(168, 0)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Herend"
-vertical_alignment = 2
+text = "Kiskunfélegyháza külső"
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SiteLabel" type="Label" parent="GridContainer"]
 layout_mode = 2

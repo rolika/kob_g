@@ -6,19 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://bw8fxpvc1gluu" path="res://assets/icons/continue_icon.png" id="4_qpknd"]
 
 [node name="RestoreControl" type="Control"]
-custom_minimum_size = Vector2(720, 140)
+custom_minimum_size = Vector2(688, 128)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 720.0
-offset_bottom = 140.0
 mouse_filter = 2
 script = ExtResource("1_2vduq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 8.0
-offset_right = 712.0
-offset_bottom = 140.0
+layout_mode = 1
+anchors_preset = -1
+theme_override_constants/separation = 8
+alignment = 1
 
 [node name="RemoveButton" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(128, 128)
@@ -28,7 +26,9 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="PileCard" parent="HBoxContainer" instance=ExtResource("3_2vduq")]
+custom_minimum_size = Vector2(416, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="ContinueButton" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(128, 128)

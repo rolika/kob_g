@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://cumltahf0qpyi"]
+
+[ext_resource type="Script" uid="uid://do1juptun06q8" path="res://scripts/hud.gd" id="1_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://bgvnxgaceb36u" path="res://assets/icons/backward_icon.png" id="1_oo0fn"]
+[ext_resource type="Texture2D" uid="uid://bjgcj1ja71uec" path="res://assets/icons/forward_icon.png" id="2_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://cw65akmhmae11" path="res://assets/icons/share_icon.png" id="4_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://bs4qnh1nsrnwk" path="res://assets/icons/backward_icon_big.png" id="4_047uy"]
+[ext_resource type="Texture2D" uid="uid://dofpwxuvim7ax" path="res://assets/icons/forward_icon_big.png" id="6_5pdws"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6fi6k"]
+
+[node name="Hud" type="MarginContainer"]
+offset_right = 720.0
+offset_bottom = 1560.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_6fi6k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(704, 0)
+layout_mode = 2
+
+[node name="BackwardButton" type="Button" parent="VBoxContainer/HeaderContainer"]
+layout_mode = 2
+icon = ExtResource("1_oo0fn")
+
+[node name="Label" type="Label" parent="VBoxContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "K Ö B Ö Z Ő"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ForwardButton" type="Button" parent="VBoxContainer/HeaderContainer"]
+layout_mode = 2
+icon = ExtResource("2_5ysmq")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6fi6k")
+
+[node name="ContentContainer" type="CenterContainer" parent="VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(704, 1260)
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6fi6k")
+
+[node name="FooterContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(704, 64)
+layout_mode = 2
+
+[node name="BackwardButton" type="Button" parent="VBoxContainer/FooterContainer"]
+custom_minimum_size = Vector2(123, 123)
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("4_047uy")
+icon_alignment = 1
+
+[node name="ShareButton" type="Button" parent="VBoxContainer/FooterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("4_6fi6k")
+icon_alignment = 1
+
+[node name="ForwardButton" type="Button" parent="VBoxContainer/FooterContainer"]
+custom_minimum_size = Vector2(123, 123)
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("6_5pdws")
+icon_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/HeaderContainer/BackwardButton" to="." method="_on_backward_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HeaderContainer/ForwardButton" to="." method="_on_forward_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/FooterContainer/BackwardButton" to="." method="_on_backward_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/FooterContainer/ShareButton" to="." method="_on_share_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/FooterContainer/ForwardButton" to="." method="_on_forward_button_pressed"]

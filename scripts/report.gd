@@ -1,6 +1,4 @@
-extends ColorRect
-
-signal back
+extends Container
 
 const DATE_FMT: String = "%s.%s.%s."
 const DATE: String = "%s, %s"
@@ -21,11 +19,11 @@ func _ready() -> void:
         quantity.add_theme_stylebox_override("normal", cellstyle)
         quantity.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
         var singlevolume: Label = Label.new()
-        singlevolume.text = str(CurrentPile.translate_decimal(cube * CurrentPile.CUBE_DATA_PRECISION))
+        singlevolume.text = CurrentPile.get_single_volume(cube)
         singlevolume.add_theme_stylebox_override("normal", cellstyle)
         singlevolume.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
         var volume: Label = Label.new()
-        volume.text = CurrentPile.translate_decimal(CurrentPile.get_volume(cube))
+        volume.text = CurrentPile.get_volume_for(cube)
         volume.add_theme_stylebox_override("normal", cellstyle)
         volume.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
         if CurrentPile.counter[cube] < 1:            
@@ -33,29 +31,39 @@ func _ready() -> void:
             quantity.add_theme_color_override("font_color", Color.GRAY)
             singlevolume.add_theme_color_override("font_color", Color.GRAY)
             volume.add_theme_color_override("font_color", Color.GRAY)
-        $ReportGrid.add_child(diameter)
-        $ReportGrid.add_child(quantity)
-        $ReportGrid.add_child(singlevolume)
-        $ReportGrid.add_child(volume)
+        $Report/ReportGrid.add_child(diameter)
+        $Report/ReportGrid.add_child(quantity)
+        $Report/ReportGrid.add_child(singlevolume)
+        $Report/ReportGrid.add_child(volume)
         index += 1
-    var volume_label: Label = Label.new()
-    volume_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+    var total_label: Label = Label.new()
+    total_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
     var volume_value: Label = Label.new()
     volume_value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-    var spacer1: Label = Label.new()
-    var spacer2: Label = Label.new()
-    volume_label.text = "összesen:"
-    volume_value.text = CurrentPile.get_total_volume_fmt()
-    spacer1.text = ""
-    spacer2.text = ""
-    $ReportGrid.add_child(volume_label)
-    $ReportGrid.add_child(spacer1)
-    $ReportGrid.add_child(spacer2)
-    $ReportGrid.add_child(volume_value)
+    var total_quantity_value: Label = Label.new()
+    total_quantity_value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+    var quantity_label: Label = Label.new()
+    quantity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+    total_label.text = "összesen:"
+    volume_value.text = CurrentPile.get_total_volume_formatted()
+    total_quantity_value.text = str(CurrentPile.get_total_quantity())
+    quantity_label.text = " db"
+    $Report/ReportGrid.add_child(total_label)
+    $Report/ReportGrid.add_child(total_quantity_value)
+    $Report/ReportGrid.add_child(quantity_label)
+    $Report/ReportGrid.add_child(volume_value)
     var today = Time.get_date_dict_from_system()
     var date_fmt = DATE_FMT % [today.year, today.month, today.day]
-    $DateLabel.text = DATE % [CurrentPile.city, date_fmt]
-    $PersonButton.text = CurrentPile.person
+    $Report/DateLabel.text = DATE % [CurrentPile.city, date_fmt]
+    $Report/PersonLabel.text = CurrentPile.person
 
-func _on_person_button_pressed() -> void:
-    back.emit()
+func get_report_as_image() -> Image:
+    var image_viewport: SubViewport = SubViewport.new()
+    add_child(image_viewport)
+    image_viewport.size = $Report.size
+    image_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+    image_viewport.add_child($Report.duplicate())
+    await RenderingServer.frame_post_draw
+    var image: Image = image_viewport.get_texture().get_image()
+    image_viewport.queue_free()
+    return image

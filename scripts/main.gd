@@ -1,6 +1,6 @@
 extends Node2D
 
-const RESTORE_SCENE = preload("res://scenes/restore.tscn")
+const TITLE_SCENE = preload("res://scenes/title.tscn")
 const SESSION_SCENE = preload("res://scenes/session.tscn")
 const TYPE_SCENE = preload("res://scenes/type_options.tscn")
 const LENGTH_SCENE = preload("res://scenes/length_options.tscn")
@@ -8,63 +8,90 @@ const WORKSPACE_SCENE = preload("res://scenes/cube_workspace.tscn")
 const REPORT_SCENE = preload("res://scenes/report.tscn")
 
 var scene: Node = null
+@onready var hud: Hud = $Hud
 
 func _ready() -> void:
-    if scene != null:
-        remove_prev_scene()
-    scene = RESTORE_SCENE.instantiate()
-    add_child(scene)
-    scene.start_new_session.connect(_on_new_session_started)
+    CurrentPile.reset_pile()
+    scene = TITLE_SCENE.instantiate()
+    hud.change_screen(scene)
+    hud.enable_forward()
+    hud.forward.connect(_on_new_session_started)
     scene.restore_session.connect(_on_show_session)
 
 func _on_new_session_started() -> void:
-    remove_prev_scene()
+    scene = SESSION_SCENE.instantiate()    
+    hud.change_screen(scene)
+    hud.enable_backward()
+    hud.forward.connect(_on_session_submitted)
+    hud.backward.connect(_ready) 
+    scene.check.connect(_on_check)
+
+func _on_show_session(session: Dictionary) -> void:
     scene = SESSION_SCENE.instantiate()
-    add_child(scene)
-    scene.submit.connect(_on_session_submitted)    
+    CurrentPile.set_session_data(session)
+    hud.change_screen(scene)
+    scene.set_session()
+    hud.enable_forward()
+    hud.enable_backward()
+    hud.forward.connect(_on_continue_session)
+    hud.backward.connect(_ready)
+    scene.check.connect(_on_check)
     
 func _on_session_submitted() -> void:
-    remove_prev_scene()
     scene = TYPE_SCENE.instantiate()
-    add_child(scene)
+    hud.change_screen(scene)
+    hud.enable_backward()
+    hud.backward.connect(_on_show_incomplete_session)
     scene.type_selected.connect(_on_type_selected)
 
+func _on_show_incomplete_session() -> void:
+    scene = SESSION_SCENE.instantiate()
+    hud.change_screen(scene)
+    scene.set_session()
+    hud.enable_forward()
+    hud.enable_backward()
+    hud.forward.connect(_on_session_submitted)
+    hud.backward.connect(_ready)
+    scene.check.connect(_on_check)    
+
 func _on_type_selected(type: String) -> void:
-    remove_prev_scene()
     scene = LENGTH_SCENE.instantiate()
     CurrentPile.type = type
-    add_child(scene)
+    hud.change_screen(scene)
+    hud.enable_backward()
+    hud.backward.connect(_on_session_submitted)
     scene.length_selected.connect(_on_length_selected)
 
 func _on_length_selected(length: float) -> void:
-    remove_prev_scene()
     scene = WORKSPACE_SCENE.instantiate()
     CurrentPile.length = length
     CurrentPile.init()
-    add_child(scene)
-    scene.done.connect(_on_cube_done)
-    scene.set_position(Vector2(0, 0))
+    hud.change_screen(scene)
+    hud.enable_forward()
+    hud.forward.connect(_on_cube_done)
 
 func _on_cube_done() -> void:
-    remove_prev_scene()
     scene = REPORT_SCENE.instantiate()
-    add_child(scene)
-    scene.back.connect(_ready)
+    hud.change_screen(scene)
+    hud.enable_all()
+    hud.forward.connect(_ready)
+    hud.backward.connect(_ready)
+    hud.share.connect(_on_report_share)
 
-func _on_show_session(session: Dictionary) -> void:
-    remove_prev_scene()
-    scene = SESSION_SCENE.instantiate()
-    CurrentPile.set_session_data(session)
-    add_child(scene)
-    scene.set_session()
-    scene.submit.connect(_on_continue_session)
+func _on_report_share() -> void:
+    var image: Image = await scene.get_report_as_image()
+    var message: String = File_IO.save_report(image)
+    OS.alert(message, "Mentve ide:")
+    DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
-func remove_prev_scene() -> void:
-    remove_child(scene)
-    scene.queue_free()
-
-func _on_continue_session() -> void:    
-    remove_prev_scene()
+func _on_continue_session() -> void:
     scene = WORKSPACE_SCENE.instantiate()
-    add_child(scene)
-    scene.done.connect(_on_cube_done)
+    hud.change_screen(scene)
+    hud.enable_forward()
+    hud.forward.connect(_on_cube_done)
+
+func _on_check() -> void:
+    if CurrentPile.is_valid():
+        hud.enable_forward()
+    else:
+        hud.disable_forward()
