@@ -4,6 +4,7 @@
 
 [node name="ConfirmDialog" type="Window"]
 disable_3d = true
+oversampling_override = 1.0
 title = "Biztos vagy benne?"
 initial_position = 1
 size = Vector2i(300, 160)
