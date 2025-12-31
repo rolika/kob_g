@@ -1,15 +1,25 @@
 extends Node
 
-const DATAFILE: String = "user://kobozo.txt"
-const PILEFOLDER: String = "user://kob"
+const USERFOLDER: String = "user://"
+const DATAFILENAME: String = "kobozo.txt"
+const DATAFILE: String = USERFOLDER + DATAFILENAME
+const PILEFOLDER: String = USERFOLDER + "kob"
 const KOBFILE_FMT: String = "%d.kob"
 const IMAGEFILE_FMT: String = "%s_%s_%s_%d.png"
 
 var download_folder: String = OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)
 
-func _ready(datafile: String = DATAFILE, pilefolder: String = PILEFOLDER) -> void:
+func _ready(datafile: String = DATAFILE, pilefolder: String = PILEFOLDER, datafilename: String = DATAFILENAME) -> void:
     if not FileAccess.file_exists(datafile):
-        propagate_notification(NOTIFICATION_WM_GO_BACK_REQUEST)
+        var datafile_in_download_folder: String = download_folder.path_join(datafilename)
+        if not FileAccess.file_exists(datafile_in_download_folder):
+            propagate_notification(NOTIFICATION_WM_GO_BACK_REQUEST)
+        else:
+            if DirAccess.copy_absolute(datafile_in_download_folder, datafile) != OK:
+                propagate_notification(NOTIFICATION_WM_GO_BACK_REQUEST)
+            else:
+                if DirAccess.remove_absolute(datafile_in_download_folder) != OK:
+                    OS.alert("Töröld a kobozo.txt file-t a Letöltések mappából!", "Hiba:")
     if not DirAccess.dir_exists_absolute(pilefolder):
         DirAccess.make_dir_absolute(pilefolder)
 

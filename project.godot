@@ -14,7 +14,7 @@ config/name="Kob"
 run/main_scene="uid://c0kmykqji62jx"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/image="uid://bvlii0h6dicwi"
-config/icon="res://icon.svg"
+config/icon="uid://bvlii0h6dicwi"
 
 [autoload]
 
