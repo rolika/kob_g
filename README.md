@@ -1,7 +1,7 @@
 # KÖBÖZŐ ALKALMAZÁS
 
 Android telefonon működik, ún. sideload eljárással lehet telepíteni, azaz:
-- letöltés után engedélyezni kell a telepítést a Store-n kívülről
+- letöltés után engedélyezni kell a telepítést a Store-n kívülről (itt oldalt: Releases - Köb - kob.apk)
 - nem szeretnénk ellenőriztetni (további lehetőségek - telepítés ellenőrzés nélkül - jóváhagyás)
 - engedélyezni kell a Beállítások - Alkalmázások - Alkalmazások - Kob alatt a tárhely hozzáférését
 
