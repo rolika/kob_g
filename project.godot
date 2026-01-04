@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Kob"
 run/main_scene="uid://c0kmykqji62jx"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/image="uid://bvlii0h6dicwi"
 config/icon="res://icon.svg"
 
@@ -49,7 +49,6 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.862745, 0.87451, 0.772549, 1)
