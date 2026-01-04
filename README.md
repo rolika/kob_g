@@ -1,15 +1,20 @@
 # KÖBÖZŐ ALKALMAZÁS
 
-Android telefonon működik, ún. sideload eljárás lehet telepíteni, azaz:
+Android telefonon működik, ún. sideload eljárással lehet telepíteni, azaz:
 - letöltés után engedélyezni kell a telepítést a Store-n kívülről
 - nem szeretnénk ellenőriztetni (további lehetőségek - telepítés ellenőrzés nélkül - jóváhagyás)
-- engedélyezni kell a Beállítások - Alkalmázások - Alkalmazások - Kob alatt a tárhely hozzáférést
+- engedélyezni kell a Beállítások - Alkalmázások - Alkalmazások - Kob alatt a tárhely hozzáférését
 
 ## Jelenleg az alábbi fafajtákat és hosszakat lehet köbözni:
 - akác: 2,0 - 2,6 - 3,1 - 4,1 m
 - bükk: 2,0 - 2,6 - 3,1 - 4,1 m
 - fenyő: 2,0 - 2,6 - 3,1 - 4,1 m
 - tölgy: 2,0 - 2,6 - 3,1 - 4,1 m
+
+### Ami jelenleg nem, vagy nem teljesen jól működik:
+- a köböző adatokban lehetséges gépelési hiba, folyamatosan javítjuk
+- köbözés közben a görgetés felülírja a fejlécet (ez csak esztétika)
+- a végén a megosztás gomb elmenti a letöltés mappába a képfile-t, de az nem, nem mindig, vagy csak órákkal, napokkal később látható
 
 ![Screenshot_20260104_134224_com example kob](https://github.com/user-attachments/assets/e4b19732-7950-4659-85d5-1ffd1b6acb62)
 
