@@ -16,10 +16,8 @@ Android telefonon működik, ún. sideload eljárással lehet telepíteni, azaz:
 - köbözés közben a görgetés felülírja a fejlécet (ez csak esztétika)
 - a végén a megosztás gomb elmenti a letöltés mappába a képfile-t, de az nem, nem mindig, vagy csak órákkal, napokkal később látható. Érdemes emiatt inkább a képernyőt elmenteni és manuálisan megvágni a köböző lapra, majd azt megosztani Drive-ra, Viber-re stb.
 
-<img src="https://github.com/user-attachments/assets/e4b19732-7950-4659-85d5-1ffd1b6acb62" height=50%, width=50%>
+<img src="https://github.com/user-attachments/assets/e4b19732-7950-4659-85d5-1ffd1b6acb62" height=33%, width=33%>
 
-![Screenshot_20260104_134224_com example kob](https://github.com/user-attachments/assets/e4b19732-7950-4659-85d5-1ffd1b6acb62)
+<img src="https://github.com/user-attachments/assets/0d9d0642-10bd-4d9d-8f95-44ad69da97da" height=33%, width=33%>
 
-![Screenshot_20260104_134319_com example kob](https://github.com/user-attachments/assets/0d9d0642-10bd-4d9d-8f95-44ad69da97da)
-
-![Screenshot_20260104_134351_com example kob](https://github.com/user-attachments/assets/6240d35f-66b1-4ce0-a1bb-6f40d5ba0644)
+<img src="https://github.com/user-attachments/assets/6240d35f-66b1-4ce0-a1bb-6f40d5ba0644" height=33%, width=33%>
